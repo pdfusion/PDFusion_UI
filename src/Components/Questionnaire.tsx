@@ -28,7 +28,6 @@ const Questionnaire: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log('Form submitted:', formData);
     setIsSubmitted(true);
   };
 
