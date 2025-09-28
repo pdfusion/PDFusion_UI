@@ -14,9 +14,10 @@ const Questionnaire: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     age: '',
-    favoriteColor: '',
     feelsFit: '',
   });
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (field: keyof typeof formData) => (
     event: React.ChangeEvent<HTMLInputElement>
@@ -27,6 +28,21 @@ const Questionnaire: React.FC = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log('Form submitted:', formData);
+    setIsSubmitted(true);
+  };
+
+  const handleDownload = () => {
+    const jsonData = JSON.stringify(formData, null, 2);
+    const blob = new Blob([jsonData], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'questionnaire-data.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -78,9 +94,16 @@ const Questionnaire: React.FC = () => {
         </Box>
       </FormControl>
 
-      <Button type="submit" variant="contained" color="primary">
-        Submit
-      </Button>
+      <Box sx={{ display: 'flex', gap: 2 }}>
+        <Button type="submit" variant="contained" color="primary">
+          Submit
+        </Button>
+        {isSubmitted && (
+          <Button variant="outlined" color="secondary" onClick={handleDownload}>
+            Download
+          </Button>
+        )}
+      </Box>
     </Box>
   );
 };
