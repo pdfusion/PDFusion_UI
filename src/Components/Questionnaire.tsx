@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   TextField,
   Button,
@@ -18,6 +18,7 @@ const Questionnaire: React.FC = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (field: keyof typeof formData) => (
     event: React.ChangeEvent<HTMLInputElement>
@@ -45,13 +46,39 @@ const Questionnaire: React.FC = () => {
     URL.revokeObjectURL(url);
   };
 
+  const handleRestoreClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const result = e.target?.result as string;
+        const parsedData = JSON.parse(result);
+        setFormData({
+          name: parsedData.name || '',
+          age: parsedData.age || '',
+          feelsFit: parsedData.feelsFit || '',
+        });
+        setIsSubmitted(true);
+      } catch (error) {
+        console.error('Invalid JSON file:', error);
+      }
+    };
+    reader.readAsText(file);
+  };
+
   return (
     <Box
       component="form"
       onSubmit={handleSubmit}
       sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: 600 }}
     >
-      <Typography variant="h6">1. Enter name</Typography>
+      <Typography variant="h6">1. Name</Typography>
       <TextField
         label="Name"
         variant="outlined"
@@ -60,7 +87,7 @@ const Questionnaire: React.FC = () => {
         fullWidth
       />
 
-      <Typography variant="h6">2. Enter age</Typography>
+      <Typography variant="h6">2. Age</Typography>
       <TextField
         label="Age"
         variant="outlined"
@@ -103,6 +130,16 @@ const Questionnaire: React.FC = () => {
             Download
           </Button>
         )}
+        <Button variant="outlined" color="info" onClick={handleRestoreClick}>
+          Restore
+        </Button>
+        <input
+          type="file"
+          accept="application/json"
+          ref={fileInputRef}
+          style={{ display: 'none' }}
+          onChange={handleFileUpload}
+        />
       </Box>
     </Box>
   );
