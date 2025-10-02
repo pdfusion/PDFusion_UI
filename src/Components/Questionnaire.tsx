@@ -9,6 +9,7 @@ import {
   FormControlLabel,
   FormControl
 } from '@mui/material';
+import PDTextField from '../FormControls/PDTextField';
 
 const Questionnaire: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -29,6 +30,7 @@ const Questionnaire: React.FC = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     setIsSubmitted(true);
+    console.log('sr log handleSubmit() >> formData:', formData);
   };
 
   const handleDownload = () => {
@@ -77,22 +79,20 @@ const Questionnaire: React.FC = () => {
       onSubmit={handleSubmit}
       sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: 600 }}
     >
-      <Typography variant="h6">1. Name</Typography>
-      <TextField
-        label="Name"
-        variant="outlined"
+      <PDTextField
+        label={"name"}
+        caption={"Name"}
         value={formData.name}
-        onChange={handleChange('name')}
-        fullWidth
+        formData={formData}
+        setFormData={setFormData}
       />
 
-      <Typography variant="h6">2. Age</Typography>
-      <TextField
-        label="Age"
-        variant="outlined"
+      <PDTextField
+        label={"age"}
+        caption={"Age"}
         value={formData.age}
-        onChange={handleChange('age')}
-        fullWidth
+        formData={formData}
+        setFormData={setFormData}
       />
 
       <Typography variant="h6">3. I feel fit</Typography>
