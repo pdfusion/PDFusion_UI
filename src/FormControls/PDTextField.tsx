@@ -1,4 +1,4 @@
-import React, { useState, type JSX, type SetStateAction } from 'react';
+import React, { type JSX } from 'react';
 import {
     Box,
     TextField,
@@ -37,11 +37,11 @@ const PDTextField = ({ label, caption, value, formData, setFormData }:IPDTextFie
         >
             <Typography variant="h6">{caption}</Typography>
             <TextField
-            label={label}
-            variant="outlined"
-            value={value}
-            onChange={handleChange(label)}
-            fullWidth
+                label={label}
+                variant="outlined"
+                value={value}
+                onChange={handleChange(label)}
+                fullWidth
             />
         </Box>
     );
