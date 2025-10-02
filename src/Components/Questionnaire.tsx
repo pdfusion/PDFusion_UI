@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import {
-  TextField,
   Button,
   Box,
   Typography,
@@ -10,6 +9,7 @@ import {
   FormControl
 } from '@mui/material';
 import PDTextField from '../FormControls/PDTextField';
+import PDForm from '../FormControls/PDForm';
 
 const Questionnaire: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -74,25 +74,21 @@ const Questionnaire: React.FC = () => {
   };
 
   return (
-    <Box
-      component="form"
+    <PDForm
+      formData={formData}
+      setFormData={setFormData}
       onSubmit={handleSubmit}
-      sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: 600 }}
     >
       <PDTextField
         label={"name"}
         caption={"Name"}
         value={formData.name}
-        formData={formData}
-        setFormData={setFormData}
       />
 
       <PDTextField
         label={"age"}
         caption={"Age"}
         value={formData.age}
-        formData={formData}
-        setFormData={setFormData}
       />
 
       <Typography variant="h6">3. I feel fit</Typography>
@@ -140,7 +136,7 @@ const Questionnaire: React.FC = () => {
           onChange={handleFileUpload}
         />
       </Box>
-    </Box>
+    </PDForm>
   );
 };
 

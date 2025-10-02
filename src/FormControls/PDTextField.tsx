@@ -5,7 +5,7 @@ import {
     Typography
 } from '@mui/material';
 
-interface IPDTextField {
+export interface IPDTextField {
     /**
      * The field label.
     */
@@ -21,14 +21,14 @@ interface IPDTextField {
     /**
      * The form data.
     */
-    formData: any,
+    formData?: any,
     /**
      * State function to set formData.
     */
-    setFormData: React.Dispatch<React.SetStateAction<any>>
+    setFormData?: React.Dispatch<React.SetStateAction<any>>
 }
 
-const PDTextField = ({ label, caption, value, formData, setFormData }:IPDTextField): JSX.Element => {
+const PDTextField = ({ label, caption, value, formData, setFormData=() => {} }:IPDTextField): JSX.Element => {
     const handleChange = (field: keyof typeof formData) => (
         event: React.ChangeEvent<HTMLInputElement>
       ) => {
