@@ -6,19 +6,25 @@ import {
 } from '@mui/material';
 
 interface IPDTextField {
-    //Field label.
+    /**
+     * The field label.
+    */
     label: string,
-
-    //Field caption.
+    /**
+     * The field caption.
+    */
     caption: string,
-
-    //Field value.
+    /**
+     * The field value.
+    */
     value: string,
-
-    //Form data.
+    /**
+     * The form data.
+    */
     formData: any,
-
-    //Function that sets formData.
+    /**
+     * State function to set formData.
+    */
     setFormData: React.Dispatch<React.SetStateAction<any>>
 }
 
