@@ -6,7 +6,8 @@ import {
   Radio,
   RadioGroup,
   FormControlLabel,
-  FormControl
+  FormControl,
+  Checkbox
 } from '@mui/material';
 import PDTextField from '../FormControls/PDTextField';
 import PDForm from '../FormControls/PDForm';
@@ -16,6 +17,7 @@ const Questionnaire: React.FC = () => {
     name: '',
     age: '',
     feelsFit: '',
+    selectedOptions: [] as string[]
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -25,6 +27,16 @@ const Questionnaire: React.FC = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setFormData({ ...formData, [field]: event.target.value });
+  };
+
+  const handleCheckboxChange = (option: string) => (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const newSelectedOptions = event.target.checked
+      ? [...formData.selectedOptions, option]
+      : formData.selectedOptions.filter((item) => item !== option);
+
+    setFormData({ ...formData, selectedOptions: newSelectedOptions });
   };
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -64,6 +76,7 @@ const Questionnaire: React.FC = () => {
           name: parsedData.name || '',
           age: parsedData.age || '',
           feelsFit: parsedData.feelsFit || '',
+          selectedOptions: parsedData.selectedOptions || []
         });
         setIsSubmitted(true);
       } catch (error) {
@@ -113,6 +126,24 @@ const Questionnaire: React.FC = () => {
           <Typography variant="body2" sx={{ minWidth: 140, textAlign: 'right' }}>
             No, this is not true
           </Typography>
+        </Box>
+      </FormControl>
+
+      <Typography variant="h6">Select from the following options</Typography>
+      <FormControl component="fieldset">
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+          {['A', 'B', 'C', 'D', 'E', 'F'].map((option) => (
+            <FormControlLabel
+              key={option}
+              control={
+                <Checkbox
+                  checked={formData.selectedOptions.includes(option)}
+                  onChange={handleCheckboxChange(option)}
+                />
+              }
+              label={option}
+            />
+          ))}
         </Box>
       </FormControl>
 
