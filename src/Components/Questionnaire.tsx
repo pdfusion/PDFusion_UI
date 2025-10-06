@@ -20,7 +20,6 @@ const Questionnaire: React.FC = () => {
     selectedOptions: [] as string[]
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (field: keyof typeof formData) => (
@@ -41,7 +40,6 @@ const Questionnaire: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    setIsSubmitted(true);
     console.log('sr log handleSubmit() >> formData:', formData);
   };
 
@@ -78,7 +76,6 @@ const Questionnaire: React.FC = () => {
           feelsFit: parsedData.feelsFit || '',
           selectedOptions: parsedData.selectedOptions || []
         });
-        setIsSubmitted(true);
       } catch (error) {
         console.error('Invalid JSON file:', error);
       }
@@ -148,14 +145,9 @@ const Questionnaire: React.FC = () => {
       </FormControl>
 
       <Box sx={{ display: 'flex', gap: 2 }}>
-        <Button type="submit" variant="contained" color="primary">
-          Submit
+        <Button type="submit" variant="contained" color="primary" onClick={handleDownload}>
+          Save
         </Button>
-        {isSubmitted && (
-          <Button variant="outlined" color="secondary" onClick={handleDownload}>
-            Download
-          </Button>
-        )}
         <Button variant="outlined" color="info" onClick={handleRestoreClick}>
           Restore
         </Button>
