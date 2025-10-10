@@ -7,9 +7,9 @@ import {
 
 export interface IPDTextField {
     /**
-     * The field label.
+     * The field name.
     */
-    label: string,
+    name: string,
     /**
      * The field caption.
     */
@@ -28,7 +28,7 @@ export interface IPDTextField {
     setFormData?: React.Dispatch<React.SetStateAction<any>>
 }
 
-const PDTextField = ({ label, caption, value, formData, setFormData=() => {} }:IPDTextField): JSX.Element => {
+const PDTextField = ({ name, caption, value, formData, setFormData=() => {} }:IPDTextField): JSX.Element => {
     const handleChange = (field: keyof typeof formData) => (
         event: React.ChangeEvent<HTMLInputElement>
       ) => {
@@ -41,12 +41,12 @@ const PDTextField = ({ label, caption, value, formData, setFormData=() => {} }:I
             onSubmit={() => {}}
             sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: 600 }}
         >
-            <Typography variant="h6">{caption}</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{caption}</Typography>
             <TextField
-                label={label}
+                label={name}
                 variant="outlined"
                 value={value}
-                onChange={handleChange(label)}
+                onChange={handleChange(name)}
                 fullWidth
             />
         </Box>
