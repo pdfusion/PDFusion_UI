@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Typography,
-  FormControlLabel,
-  FormControl,
-  Checkbox
-} from '@mui/material';
 import PDTextField from '../FormControls/PDTextField';
 import PDForm from '../FormControls/PDForm';
 import PDButton from '../FormControls/PDButton';
 import PDRadioScale from '../FormControls/PDRadioScale';
+import PDCheckboxGroup from '../FormControls/PDCheckboxGroup';
 
 const Questionnaire: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -19,19 +13,8 @@ const Questionnaire: React.FC = () => {
     selectedOptions: [] as string[]
   });
 
-  const handleCheckboxChange = (option: string) => (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const newSelectedOptions = event.target.checked
-      ? [...formData.selectedOptions, option]
-      : formData.selectedOptions.filter((item) => item !== option);
-
-    setFormData({ ...formData, selectedOptions: newSelectedOptions });
-  };
-
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log('sr log handleSubmit() >> formData:', formData);
   };
 
   return (
@@ -41,13 +24,13 @@ const Questionnaire: React.FC = () => {
       onSubmit={handleSubmit}
     >
       <PDTextField
-        label={"name"}
+        name={"name"}
         caption={"Name"}
         value={formData.name}
       />
 
       <PDTextField
-        label={"age"}
+        name={"age"}
         caption={"Age"}
         value={formData.age}
       />
@@ -58,24 +41,18 @@ const Questionnaire: React.FC = () => {
         value={formData.feelsFit}
       />
 
-      <Typography variant="h6">Select from the following options</Typography>
-      <FormControl component="fieldset">
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-          {['A', 'B', 'C', 'D', 'E', 'F'].map((option) => (
-            <FormControlLabel
-              key={option}
-              control={
-                <Checkbox
-                  checked={formData.selectedOptions.includes(option)}
-                  onChange={handleCheckboxChange(option)}
-                />
-              }
-              label={option}
-            />
-          ))}
-        </Box>
-      </FormControl>
-      
+      <PDCheckboxGroup
+        name={"gameDevices"}
+        caption={"Do you play games on any of the following devices? (Select all that apply)"}
+        options={[
+          { name: "gameDeviceSmartPhoneTablet", label: "Smartphone or tablet"},
+          { name: "gameDeviceComputer", label: "Computer (desktop or laptop)"},
+          { name: "gameDeviceConsole", label: "Gaming console (e.g., PlayStation, Xbox, Nintendo Switch)"},
+          { name: "gameDeviceDoNotPlay", label: "I do not play games on any electronic device"},
+          { name: "gameDeviceDoNotSay", label: "Prefer not to say"}
+        ]}
+      />
+
       <PDButton
         buttonType={"save"}
       />

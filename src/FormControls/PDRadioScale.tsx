@@ -55,8 +55,8 @@ const PDRadioScale = ({
       };
 
     return (
-        <>
-        <Typography variant="h6">{caption}</Typography>
+      <>
+        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{caption}</Typography>
         <FormControl component="fieldset">
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Typography variant="body2" sx={{ minWidth: 120 }}>{lefttEndLabel}</Typography>
