@@ -38,8 +38,8 @@ const NavTabs: React.FC = () => {
     <AppBar position="static">
       <Toolbar>
         <Tabs value={currentTab} onChange={handleChange} textColor="inherit" indicatorColor="secondary">
-          <Tab label="Home" value="/" />
-          <Tab label="Report" value="/report" />
+          <Tab label="Cases" value="/" />
+          <Tab label="Reports" value="/report" />
         </Tabs>
       </Toolbar>
     </AppBar>
@@ -54,9 +54,10 @@ const App: React.FC = () => {
         <NavTabs />
         <Container maxWidth="sm" sx={{ mt: 4 }}>
           <Routes>
-            <Route path="/" element={<Questionnaire />} />
+            <Route path="/" element={<></>} />
             <Route path="/report" element={<Report />} />
-            <Route path="/workspace" element={<Workspace />} />
+            <Route path="/workspace/:id" element={<Workspace />} />
+            <Route path="/questionnaire" element={<Questionnaire />} />
           </Routes>
         </Container>
       </Router>
