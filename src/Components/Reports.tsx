@@ -5,7 +5,7 @@ const Report: React.FC = () => {
   return (
     <div>
       <Typography variant="h4" gutterBottom>
-        Report Page
+        Reports Page
       </Typography>
       <Typography>
         This is where your report content will go.

@@ -17,7 +17,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import Questionnaire from './Components/Questionnaire';
-import Report from './Components/Report';
+import Reports from './Components/Reports';
 import Workspace from './Components/Workspace';
 
 const theme = createTheme();
@@ -27,7 +27,7 @@ const NavTabs: React.FC = () => {
   const location = useLocation();
 
   // Only highlight tabs that are in the nav bar
-  const tabPaths = ['/', '/report'];
+  const tabPaths = ['/', '/reports'];
   const currentTab = tabPaths.includes(location.pathname) ? location.pathname : false;
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -39,7 +39,7 @@ const NavTabs: React.FC = () => {
       <Toolbar>
         <Tabs value={currentTab} onChange={handleChange} textColor="inherit" indicatorColor="secondary">
           <Tab label="Cases" value="/" />
-          <Tab label="Reports" value="/report" />
+          <Tab label="Reports" value="/reports" />
         </Tabs>
       </Toolbar>
     </AppBar>
@@ -55,7 +55,7 @@ const App: React.FC = () => {
         <Container maxWidth="sm" sx={{ mt: 4 }}>
           <Routes>
             <Route path="/" element={<></>} />
-            <Route path="/report" element={<Report />} />
+            <Route path="/reports" element={<Reports />} />
             <Route path="/workspace/:id" element={<Workspace />} />
             <Route path="/questionnaire" element={<Questionnaire />} />
           </Routes>
