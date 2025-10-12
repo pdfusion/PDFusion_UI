@@ -1,14 +1,34 @@
 import React from 'react';
-import { ThemeProvider, createTheme, CssBaseline, Container, AppBar, Toolbar, Tabs, Tab } from '@mui/material';
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import {
+  ThemeProvider,
+  createTheme,
+  CssBaseline,
+  Container,
+  AppBar,
+  Toolbar,
+  Tabs,
+  Tab,
+} from '@mui/material';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import Questionnaire from './Components/Questionnaire';
 import Report from './Components/Report';
+import Workspace from './Components/Workspace';
 
 const theme = createTheme();
 
 const NavTabs: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Only highlight tabs that are in the nav bar
+  const tabPaths = ['/', '/report'];
+  const currentTab = tabPaths.includes(location.pathname) ? location.pathname : false;
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     navigate(newValue);
@@ -17,7 +37,7 @@ const NavTabs: React.FC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Tabs value={location.pathname} onChange={handleChange} textColor="inherit" indicatorColor="secondary">
+        <Tabs value={currentTab} onChange={handleChange} textColor="inherit" indicatorColor="secondary">
           <Tab label="Home" value="/" />
           <Tab label="Report" value="/report" />
         </Tabs>
@@ -36,6 +56,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Questionnaire />} />
             <Route path="/report" element={<Report />} />
+            <Route path="/workspace" element={<Workspace />} />
           </Routes>
         </Container>
       </Router>
