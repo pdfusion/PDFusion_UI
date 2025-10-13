@@ -30,7 +30,7 @@ const NavTabs: React.FC = () => {
   const tabPaths = ['/', '/reports'];
   const currentTab = tabPaths.includes(location.pathname) ? location.pathname : false;
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     navigate(newValue);
   };
 

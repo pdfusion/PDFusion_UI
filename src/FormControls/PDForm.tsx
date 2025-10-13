@@ -1,8 +1,6 @@
 import React, { type JSX } from 'react';
 import {
     Box,
-    TextField,
-    Typography
 } from '@mui/material';
 import type { IPDTextField } from './PDTextField';
 
