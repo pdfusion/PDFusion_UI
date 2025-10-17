@@ -17,7 +17,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import Questionnaire from './pages/Questionnaire';
-import Reports from './pages/Reports';
+import Imports from './pages/Imports';
 import Workspace from './pages/Workspace';
 
 const theme = createTheme();
@@ -39,7 +39,7 @@ const NavTabs: React.FC = () => {
       <Toolbar>
         <Tabs value={currentTab} onChange={handleChange} textColor="inherit" indicatorColor="secondary">
           <Tab label="Cases" value="/" />
-          <Tab label="Reports" value="/reports" />
+          <Tab label="Imports" value="/imports" />
         </Tabs>
       </Toolbar>
     </AppBar>
@@ -55,7 +55,7 @@ const App: React.FC = () => {
         <Container maxWidth="sm" sx={{ mt: 4 }}>
           <Routes>
             <Route path="/" element={<></>} />
-            <Route path="/reports" element={<Reports />} />
+            <Route path="/imports" element={<Imports />} />
             <Route path="/workspace/:id" element={<Workspace />} />
             <Route path="/questionnaire" element={<Questionnaire />} />
           </Routes>
