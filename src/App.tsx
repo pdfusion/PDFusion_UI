@@ -16,6 +16,7 @@ import {
   useNavigate,
   useLocation,
 } from 'react-router-dom';
+import { CasesDataProvider } from './contexts/CasesDataContext';
 import Questionnaire from './pages/Questionnaire';
 import Imports from './pages/Imports';
 import Workspace from './pages/Workspace';
@@ -51,15 +52,17 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <NavTabs />
-        <Container maxWidth="sm" sx={{ mt: 4 }}>
-          <Routes>
-            <Route path="/" element={<></>} />
-            <Route path="/imports" element={<Imports />} />
-            <Route path="/workspace/:id" element={<Workspace />} />
-            <Route path="/questionnaire" element={<Questionnaire />} />
-          </Routes>
-        </Container>
+        <CasesDataProvider>
+          <NavTabs />
+          <Container maxWidth="sm" sx={{ mt: 4 }}>
+            <Routes>
+              <Route path="/" element={<></>} />
+              <Route path="/imports" element={<Imports />} />
+              <Route path="/workspace/:id" element={<Workspace />} />
+              <Route path="/questionnaire" element={<Questionnaire />} />
+            </Routes>
+          </Container>
+        </CasesDataProvider>
       </Router>
     </ThemeProvider>
   );
