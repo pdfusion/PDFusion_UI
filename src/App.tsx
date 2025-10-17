@@ -16,9 +16,9 @@ import {
   useNavigate,
   useLocation,
 } from 'react-router-dom';
-import Questionnaire from './Components/Questionnaire';
-import Reports from './Components/Reports';
-import Workspace from './Components/Workspace';
+import Questionnaire from './components/Questionnaire';
+import Reports from './components/Reports';
+import Workspace from './components/Workspace';
 
 const theme = createTheme();
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import PDTextField from '../FormControls/PDTextField';
-import PDForm from '../FormControls/PDForm';
-import PDButton from '../FormControls/PDButton';
-import PDRadioScale from '../FormControls/PDRadioScale';
-import PDCheckboxGroup from '../FormControls/PDCheckboxGroup';
+import PDTextField from './widgets/PDTextField';
+import PDForm from './widgets/PDForm';
+import PDButton from './widgets/PDButton';
+import PDRadioScale from './widgets/PDRadioScale';
+import PDCheckboxGroup from './widgets/PDCheckboxGroup';
 
 const Questionnaire: React.FC = () => {
   const [formData, setFormData] = useState({
