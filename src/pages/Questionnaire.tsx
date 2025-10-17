@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PDTextField from '../components/widgets/PDTextField';
 import PDForm from '../components/widgets/PDForm';
 import PDButton from '../components/widgets/PDButton';
 import PDRadioScale from '../components/widgets/PDRadioScale';
 import PDCheckboxGroup from '../components/widgets/PDCheckboxGroup';
+import { useCasesData } from '../contexts/CasesDataContext'
 
 const Questionnaire: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    age: '',
-    feelsFit: '',
-    selectedOptions: [] as string[]
-  });
+  const { caseData, setCaseData } = useCasesData();
+  const [formData, setFormData] = useState(caseData.formData);
+
+  
+  useEffect(() => {
+    setFormData(caseData.formData);
+  }, [caseData]);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    setCaseData({
+      ...caseData,
+      formData
+    });
   };
 
   return (
@@ -23,7 +29,7 @@ const Questionnaire: React.FC = () => {
       setFormData={setFormData}
       onSubmit={handleSubmit}
     >
-      <PDTextField
+      {/* <PDTextField
         name={"name"}
         caption={"Name"}
         value={formData.name}
@@ -33,7 +39,7 @@ const Questionnaire: React.FC = () => {
         name={"age"}
         caption={"Age"}
         value={formData.age}
-      />
+      /> */}
 
       <PDRadioScale
         name={"feelsFit"}

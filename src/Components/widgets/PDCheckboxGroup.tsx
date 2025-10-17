@@ -11,7 +11,7 @@ export interface IPDCheckboxGroup {
     caption: string,
     options: ICheckboxOptions[],
     value?: string,
-    formData?: { selectedOptions: string[] },
+    formData?: { gameDevices: string[] },
     setFormData?: React.Dispatch<React.SetStateAction<any>>,
     handleChange?: (option: string) => void
 }
@@ -22,14 +22,14 @@ const PDCheckboxGroup = ({
     formData,
     setFormData
 }: IPDCheckboxGroup): JSX.Element => {
-    const selectedOptions = formData?.selectedOptions || [];
+    const gameDevices = formData?.gameDevices || [];
 
     const onCheckboxChange = (option: string) => {
-    const updatedOptions = selectedOptions.includes(option)
-        ? selectedOptions.filter((item) => item !== option)
-        : [...selectedOptions, option];
+    const updatedOptions = gameDevices.includes(option)
+        ? gameDevices.filter((item) => item !== option)
+        : [...gameDevices, option];
 
-        if (setFormData) setFormData({ ...formData, selectedOptions: updatedOptions });
+        if (setFormData) setFormData({ ...formData, gameDevices: updatedOptions });
     };
 
     return (
@@ -44,7 +44,7 @@ const PDCheckboxGroup = ({
                     key={option.name}
                     control={
                     <Checkbox
-                        checked={selectedOptions.includes(option.name)}
+                        checked={gameDevices.includes(option.name)}
                         onChange={() => onCheckboxChange(option.name)}
                     />
                     }

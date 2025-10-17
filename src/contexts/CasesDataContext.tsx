@@ -1,22 +1,45 @@
-import React, { createContext, useState, type ReactNode } from 'react';
+import React, { createContext, useContext, useState, type ReactNode } from 'react';
 
-type CasesDataType = {
-  value: string;
-  setValue: (newValue: string) => void;
+interface IQuestionnaireFormData {
+    feelsFit: string,
+    gameDevices: string[]
 };
 
-export const CasesDataContext = createContext<CasesDataType | undefined>(undefined);
-
-type CasesDataProviderProps = {
-    children: ReactNode;
+type CaseDataType = {
+    userId: string,
+    formData: IQuestionnaireFormData
 };
 
-export const CasesDataProvider = ({ children }: CasesDataProviderProps) => {
-    const [value, setValue] = useState<string>('initial');
-    
+type CasesDataContextType = {
+    caseData: CaseDataType;
+    setCaseData: (data: CaseDataType) => void;
+};
+
+const defaultCaseData: CaseDataType = {
+    userId: '',
+    formData: {
+        feelsFit: '',
+        gameDevices: []
+    }
+};
+
+
+export const CasesDataContext = createContext<CasesDataContextType | undefined>(undefined);
+
+export const CasesDataProvider = ({ children }: { children: ReactNode }) => {
+    const [caseData, setCaseData] = useState<CaseDataType>(defaultCaseData);
+
     return (
-        <CasesDataContext.Provider value={{ value, setValue }}>
-            {children}
-        </CasesDataContext.Provider>
+    <CasesDataContext.Provider value={{ caseData, setCaseData }}>
+        {children}
+    </CasesDataContext.Provider>
     );
+};
+
+export const useCasesData = () => {
+    const context = useContext(CasesDataContext);
+    if (!context) {
+    throw new Error('useCasesData must be used within a CasesDataProvider');
+    }
+    return context;
 };
