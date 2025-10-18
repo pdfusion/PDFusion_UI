@@ -4,32 +4,41 @@ import PDTextField from '../components/widgets/PDTextField.tsx';
 import PDButton from '../components/widgets/PDButton.tsx';
 import PDRadioScale from '../components/widgets/PDRadioScale.tsx';
 import PDCheckboxGroup from '../components/widgets/PDCheckboxGroup.tsx';
-import { createCase, getCaseById, initFormData, updateFormDataByCaseId } from '../api/cases.ts';
-import { useCasesData } from '../contexts/CasesDataContext.tsx';
+import { useParams } from 'react-router-dom';
+import { useCasesDataAPI } from '../hooks/useCasesDataAPI';
 
 interface IQuestionnaire {
   
 }
 
 const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
+  const {
+      initFormData,
+      getCaseById,
+      createCase,
+      updateFormDataByCaseId,
+    } = useCasesDataAPI();
+
   const [formData, setFormData] = useState(initFormData);
-  const { casesData, setCasesData } = useCasesData();
-  //TODO: Set this dynamically.
-  const caseId = 'pdfn:cases:1';
+  const { id } = useParams<{ id: string }>();
   
   useEffect(() => {
     (async () => {
-      const caseDataRes = await getCaseById(caseId, casesData);
-      setFormData(caseDataRes.formData);
+      console.log('sr log id from params:', id);
+      if(id) {
+        const caseDataRes = await getCaseById(id);
+        console.log('sr log casesDataRes:', caseDataRes);
+        setFormData(caseDataRes.formData);
+      }
     })();
-  }, [caseId, casesData]);
+  }, [id]);
   
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if(caseId)
-      await updateFormDataByCaseId(caseId, formData, casesData, setCasesData);
+    if(id)
+      await updateFormDataByCaseId(id, formData);
     else
-      await createCase(formData, casesData, setCasesData);
+      await createCase(formData);
   };
 
 
