@@ -1,35 +1,60 @@
 import React, { type JSX } from 'react';
 import { Box, Checkbox, FormControl, FormControlLabel, Typography } from '@mui/material';
+import type { IQuestionnaireFormData } from '../../contexts/CasesDataContext';
 
 export interface ICheckboxOptions {
+    /**
+     * The field name.
+    */
     name: string,
+    /**
+     * The field label.
+    */
     label: string
 }
 
 export interface IPDCheckboxGroup {
+    /**
+     * The field name.
+    */
     name?: string,
+    /**
+     * The field caption.
+    */
     caption: string,
+    /**
+     * The selectable checkbox options.
+    */
     options: ICheckboxOptions[],
-    value?: string,
-    formData?: { gameDevices: string[] },
+    /**
+     * The form data.
+    */
+    formData?: IQuestionnaireFormData,
+    /**
+     * State function to set formData.
+    */
     setFormData?: React.Dispatch<React.SetStateAction<any>>,
+    /**
+     * Optional function to handle change.
+    */
     handleChange?: (option: string) => void
 }
 
 const PDCheckboxGroup = ({
+    name,
     caption,
     options,
     formData,
     setFormData
 }: IPDCheckboxGroup): JSX.Element => {
-    const gameDevices = formData?.gameDevices || [];
+    const selectedOptions = (formData as Record<string, string[]>)[name as string] || [];
 
     const onCheckboxChange = (option: string) => {
-    const updatedOptions = gameDevices.includes(option)
-        ? gameDevices.filter((item) => item !== option)
-        : [...gameDevices, option];
+    const updatedOptions = selectedOptions.includes(option)
+        ? selectedOptions.filter((item: string) => item !== option)
+        : [...selectedOptions, option];
 
-        if (setFormData) setFormData({ ...formData, gameDevices: updatedOptions });
+        if (setFormData) setFormData({ ...formData, [name as string]: updatedOptions });
     };
 
     return (
@@ -44,7 +69,7 @@ const PDCheckboxGroup = ({
                     key={option.name}
                     control={
                     <Checkbox
-                        checked={gameDevices.includes(option.name)}
+                        checked={selectedOptions.includes(option.name)}
                         onChange={() => onCheckboxChange(option.name)}
                     />
                     }

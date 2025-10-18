@@ -1,23 +1,34 @@
 import React, { createContext, useContext, useState, type ReactNode } from 'react';
 
-interface IQuestionnaireFormData {
+export interface IQuestionnaireFormData {
+    [key: string]: string | string[],
+    caseId: string,
+    userId: string,
+    name: string,
+    age: string,
     feelsFit: string,
     gameDevices: string[]
 };
 
-type CaseDataType = {
+export type CaseDataType = {
+    id: string,
     userId: string,
     formData: IQuestionnaireFormData
 };
 
-type CasesDataContextType = {
-    caseData: CaseDataType;
-    setCaseData: (data: CaseDataType) => void;
+export type CasesDataContextType = {
+    casesData: CaseDataType[];
+    setCasesData: (data: CaseDataType[]) => void;
 };
 
-const defaultCaseData: CaseDataType = {
+export const defaultCaseData: CaseDataType = {
+    id: '',
     userId: '',
     formData: {
+        caseId: '',
+        userId: '',
+        name: '',
+        age: '',
         feelsFit: '',
         gameDevices: []
     }
@@ -27,10 +38,10 @@ const defaultCaseData: CaseDataType = {
 export const CasesDataContext = createContext<CasesDataContextType | undefined>(undefined);
 
 export const CasesDataProvider = ({ children }: { children: ReactNode }) => {
-    const [caseData, setCaseData] = useState<CaseDataType>(defaultCaseData);
+    const [casesData, setCasesData] = useState<CaseDataType[]>([defaultCaseData]);
 
     return (
-    <CasesDataContext.Provider value={{ caseData, setCaseData }}>
+    <CasesDataContext.Provider value={{ casesData, setCasesData }}>
         {children}
     </CasesDataContext.Provider>
     );
@@ -39,7 +50,7 @@ export const CasesDataProvider = ({ children }: { children: ReactNode }) => {
 export const useCasesData = () => {
     const context = useContext(CasesDataContext);
     if (!context) {
-    throw new Error('useCasesData must be used within a CasesDataProvider');
+        throw new Error('useCasesData must be used within a CasesDataProvider');
     }
     return context;
 };
