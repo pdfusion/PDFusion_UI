@@ -1,11 +1,11 @@
 import React, { useEffect, useState, type JSX } from 'react';
-import PDForm from '../components/widgets/PDForm';
-import PDTextField from '../components/widgets/PDTextField';
-import PDButton from '../components/widgets/PDButton';
-import PDRadioScale from '../components/widgets/PDRadioScale';
-import PDCheckboxGroup from '../components/widgets/PDCheckboxGroup';
-import { createCase, getCaseById, initFormData, updateFormDataByCaseId } from '../api/cases';
-import { useCasesData } from '../contexts/CasesDataContext';
+import PDForm from '../components/widgets/PDForm.tsx';
+import PDTextField from '../components/widgets/PDTextField.tsx';
+import PDButton from '../components/widgets/PDButton.tsx';
+import PDRadioScale from '../components/widgets/PDRadioScale.tsx';
+import PDCheckboxGroup from '../components/widgets/PDCheckboxGroup.tsx';
+import { createCase, getCaseById, initFormData, updateFormDataByCaseId } from '../api/cases.ts';
+import { useCasesData } from '../contexts/CasesDataContext.tsx';
 
 interface IQuestionnaire {
   
