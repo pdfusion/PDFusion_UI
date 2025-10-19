@@ -16,9 +16,11 @@ import {
   useNavigate,
   useLocation,
 } from 'react-router-dom';
-import Questionnaire from './Components/Questionnaire';
-import Reports from './Components/Reports';
-import Workspace from './Components/Workspace';
+import { CasesDataProvider } from './contexts/CasesDataContext';
+import Questionnaire from './pages/Questionnaire';
+import Imports from './pages/Imports';
+import Workspace from './pages/Workspace';
+import { UsersDataProvider } from './contexts/UsersDataContext';
 
 const theme = createTheme();
 
@@ -39,7 +41,7 @@ const NavTabs: React.FC = () => {
       <Toolbar>
         <Tabs value={currentTab} onChange={handleChange} textColor="inherit" indicatorColor="secondary">
           <Tab label="Cases" value="/" />
-          <Tab label="Reports" value="/reports" />
+          <Tab label="Imports" value="/imports" />
         </Tabs>
       </Toolbar>
     </AppBar>
@@ -51,15 +53,21 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <NavTabs />
-        <Container maxWidth="sm" sx={{ mt: 4 }}>
-          <Routes>
-            <Route path="/" element={<></>} />
-            <Route path="/reports" element={<Reports />} />
-            <Route path="/workspace/:id" element={<Workspace />} />
-            <Route path="/questionnaire" element={<Questionnaire />} />
-          </Routes>
-        </Container>
+        <UsersDataProvider>
+          <CasesDataProvider>
+            <NavTabs />
+            <Container maxWidth="sm" sx={{ mt: 4 }}>
+              <Routes>
+                <Route path="/" element={<></>} />
+                <Route path="/imports" element={<Imports />} />
+                <Route path="/workspace/:id" element={<Workspace />} />
+                <Route path="/questionnaire" element={<Questionnaire />} />
+                <Route path="/questionnaire/:id" element={<Questionnaire />}
+                />
+              </Routes>
+            </Container>
+          </CasesDataProvider>
+        </UsersDataProvider>
       </Router>
     </ThemeProvider>
   );

@@ -1,35 +1,60 @@
 import React, { type JSX } from 'react';
 import { Box, Checkbox, FormControl, FormControlLabel, Typography } from '@mui/material';
+import type { IQuestionnaireFormData } from '../../pages/IQuestionnaire';
 
 export interface ICheckboxOptions {
+    /**
+     * The field name.
+    */
     name: string,
+    /**
+     * The field label.
+    */
     label: string
 }
 
 export interface IPDCheckboxGroup {
+    /**
+     * The field name.
+    */
     name?: string,
+    /**
+     * The field caption.
+    */
     caption: string,
+    /**
+     * The selectable checkbox options.
+    */
     options: ICheckboxOptions[],
-    value?: string,
-    formData?: { selectedOptions: string[] },
+    /**
+     * The form data.
+    */
+    formData?: IQuestionnaireFormData,
+    /**
+     * State function to set formData.
+    */
     setFormData?: React.Dispatch<React.SetStateAction<any>>,
+    /**
+     * Optional function to handle change.
+    */
     handleChange?: (option: string) => void
 }
 
 const PDCheckboxGroup = ({
+    name,
     caption,
     options,
     formData,
     setFormData
 }: IPDCheckboxGroup): JSX.Element => {
-    const selectedOptions = formData?.selectedOptions || [];
+    const selectedOptions = (formData as Record<string, string[]>)[name as string] || [];
 
     const onCheckboxChange = (option: string) => {
     const updatedOptions = selectedOptions.includes(option)
-        ? selectedOptions.filter((item) => item !== option)
+        ? selectedOptions.filter((item: string) => item !== option)
         : [...selectedOptions, option];
 
-        if (setFormData) setFormData({ ...formData, selectedOptions: updatedOptions });
+        if (setFormData) setFormData({ ...formData, [name as string]: updatedOptions });
     };
 
     return (

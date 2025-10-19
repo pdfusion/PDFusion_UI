@@ -5,10 +5,10 @@ const Report: React.FC = () => {
   return (
     <div>
       <Typography variant="h4" gutterBottom>
-        Reports Page
+        Imports Page
       </Typography>
       <Typography>
-        This is where your report content will go.
+        This is where imports will be handled.
       </Typography>
     </div>
   );
