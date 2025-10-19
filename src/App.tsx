@@ -22,6 +22,7 @@ import Imports from './pages/Imports';
 import CaseDashboard from './pages/CaseDashboard';
 import { UsersDataProvider } from './contexts/UsersDataContext';
 import Cases from './pages/Cases';
+import Profiles from './pages/Profiles';
 
 const theme = createTheme();
 
@@ -42,6 +43,7 @@ const NavTabs: React.FC = () => {
       <Toolbar>
         <Tabs value={currentTab} onChange={handleChange} textColor="inherit" indicatorColor="secondary">
           <Tab label="Cases" value="/" />
+          <Tab label="Profiles" value="/profiles" />
           <Tab label="Imports" value="/imports" />
         </Tabs>
       </Toolbar>
@@ -61,6 +63,7 @@ const App: React.FC = () => {
               <Routes>
                 <Route path="/" element={<Cases />} />
                 <Route path="/imports" element={<Imports />} />
+                <Route path="/profiles" element={<Profiles />} />
                 <Route path="/cases/:id" element={<CaseDashboard />} />
                 <Route path="/questionnaire" element={<Questionnaire />} />
                 <Route path="/questionnaire/:id" element={<Questionnaire />}
