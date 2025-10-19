@@ -20,6 +20,7 @@ import { CasesDataProvider } from './contexts/CasesDataContext';
 import Questionnaire from './pages/Questionnaire';
 import Imports from './pages/Imports';
 import Workspace from './pages/Workspace';
+import { UsersDataProvider } from './contexts/UsersDataContext';
 
 const theme = createTheme();
 
@@ -52,19 +53,21 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <CasesDataProvider>
-          <NavTabs />
-          <Container maxWidth="sm" sx={{ mt: 4 }}>
-            <Routes>
-              <Route path="/" element={<></>} />
-              <Route path="/imports" element={<Imports />} />
-              <Route path="/workspace/:id" element={<Workspace />} />
-              <Route path="/questionnaire" element={<Questionnaire />} />
-              <Route path="/questionnaire/:id" element={<Questionnaire />}
-              />
-            </Routes>
-          </Container>
-        </CasesDataProvider>
+        <UsersDataProvider>
+          <CasesDataProvider>
+            <NavTabs />
+            <Container maxWidth="sm" sx={{ mt: 4 }}>
+              <Routes>
+                <Route path="/" element={<></>} />
+                <Route path="/imports" element={<Imports />} />
+                <Route path="/workspace/:id" element={<Workspace />} />
+                <Route path="/questionnaire" element={<Questionnaire />} />
+                <Route path="/questionnaire/:id" element={<Questionnaire />}
+                />
+              </Routes>
+            </Container>
+          </CasesDataProvider>
+        </UsersDataProvider>
       </Router>
     </ThemeProvider>
   );

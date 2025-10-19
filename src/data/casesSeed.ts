@@ -8,7 +8,7 @@ export const casesSeed: CaseDataType[] = [
         formData: {
             patientId: 'pdfn:users:1',
             caseManagerId: 'pfn:users:2',
-            name: 'Alice',
+            name: 'Alice Wonder',
             age: '30',
             feelsFit: '5',
             gameDevices: ['gameDeviceComputer', 'gameDeviceConsole']
@@ -21,7 +21,7 @@ export const casesSeed: CaseDataType[] = [
         formData: {
             patientId: 'pdfn:users:3',
             caseManagerId: 'pfn:users:4',
-            name: "Bob",
+            name: "Jasmine Patel",
             age: "25",
             feelsFit: "2",
             gameDevices: [
@@ -40,7 +40,7 @@ export const casesSeed: CaseDataType[] = [
         formData: {
             patientId: 'pdfn:users:5',
             caseManagerId: 'pfn:users:6',
-            name: "James",
+            name: "Darius Kim",
             age: "60",
             feelsFit: "3",
             gameDevices: [
