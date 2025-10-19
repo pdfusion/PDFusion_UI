@@ -1,4 +1,4 @@
-import type { IUserForm } from "../components/Patients/IUserForm";
+import type { IUserForm } from "../components/Users/IUserForm";
 import { defaultUserData, useUsersData, type UserDataType } from "../contexts/UsersDataContext";
 import { LOCAL_STORAGE_USERS_KEY } from "../data/constants";
 import { usersSeed } from "../data/usersSeed";
