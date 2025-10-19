@@ -13,7 +13,7 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
       initFormData,
       getCaseById,
       createCase,
-      updateFormDataByCaseId,
+      updateCase,
     } = useCasesDataAPI();
 
   const [formData, setFormData] = useState(initFormData);
@@ -31,7 +31,7 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if(id)
-      await updateFormDataByCaseId(id, formData);
+      await updateCase(id, formData);
     else
       await createCase(formData);
   };

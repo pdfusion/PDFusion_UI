@@ -1,10 +1,12 @@
 import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { casesSeed } from '../data/casesSeed';
 import type { IQuestionnaireFormData } from '../pages/IQuestionnaire';
+import { LOCAL_STORAGE_CASES_KEY } from '../data/constants';
 
 export type CaseDataType = {
     id: string,
-    userId: string,
+    patientId: string,
+    caseManagerId: string,
     formData: IQuestionnaireFormData
 };
 
@@ -14,26 +16,26 @@ export type CasesDataContextType = {
 };
 
 export const defaultCaseData: CaseDataType = {
-  id: '',
-  userId: '',
-  formData: {
-    caseId: '',
-    userId: '',
-    name: '',
-    age: '',
-    feelsFit: '',
-    gameDevices: [],
-  },
+    id: '',
+    patientId: '',
+    caseManagerId: '',
+    formData: {
+        caseId: '',
+        patientId: '',
+        caseManagerId: '',
+        name: '',
+        age: '',
+        feelsFit: '',
+        gameDevices: []
+    }
 };
-
-const LOCAL_STORAGE_KEY = 'casesData';
 
 export const CasesDataContext = createContext<CasesDataContextType | undefined>(undefined);
 
 export const CasesDataProvider = ({ children }: { children: ReactNode }) => {
   const [casesData, setCasesData] = useState<CaseDataType[]>(() => {
     try {
-      const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+      const stored = localStorage.getItem(LOCAL_STORAGE_CASES_KEY);
       return stored ? JSON.parse(stored) : casesSeed;
     } catch (error) {
       console.error('Failed to load cases from localStorage:', error);
@@ -43,7 +45,7 @@ export const CasesDataProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     try {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(casesData));
+      localStorage.setItem(LOCAL_STORAGE_CASES_KEY, JSON.stringify(casesData));
     } catch (error) {
       console.error('Failed to save cases to localStorage:', error);
     }
