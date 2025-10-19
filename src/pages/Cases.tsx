@@ -7,19 +7,19 @@ const Cases: React.FC = () => {
   const { getCases } = useCasesDataAPI();
 
   useEffect(() => {
-    const logCases = async () => {
+    (async () => {
       const casesDataRes = await getCases();
       setCasesData(casesDataRes);
-      console.log('sr log casesData:', casesDataRes);
-    };
-
-    logCases();
+    })();
   }, []);
+  
+  //TODO: Remove below console.log when table is ready.
+  console.log('sr log casesData:', casesData);
 
   return (
     <div>
       <h2>Cases Component</h2>
-      <p>Open the console to see logged case data.</p>
+      <p>Open the console to see logged cases data.</p>
     </div>
   );
 };
