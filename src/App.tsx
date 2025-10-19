@@ -19,7 +19,7 @@ import {
 import { CasesDataProvider } from './contexts/CasesDataContext';
 import Questionnaire from './pages/Questionnaire';
 import Imports from './pages/Imports';
-import Workspace from './pages/Workspace';
+import CaseDashboard from './pages/CaseDashboard';
 import { UsersDataProvider } from './contexts/UsersDataContext';
 import Cases from './pages/Cases';
 
@@ -61,7 +61,7 @@ const App: React.FC = () => {
               <Routes>
                 <Route path="/" element={<Cases />} />
                 <Route path="/imports" element={<Imports />} />
-                <Route path="/workspace/:id" element={<Workspace />} />
+                <Route path="/cases/:id" element={<CaseDashboard />} />
                 <Route path="/questionnaire" element={<Questionnaire />} />
                 <Route path="/questionnaire/:id" element={<Questionnaire />}
                 />
