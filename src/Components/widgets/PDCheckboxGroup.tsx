@@ -1,6 +1,6 @@
 import React, { type JSX } from 'react';
 import { Box, Checkbox, FormControl, FormControlLabel, Typography } from '@mui/material';
-import type { IQuestionnaireFormData } from '../../contexts/CasesDataContext';
+import type { IQuestionnaireFormData } from '../../pages/IQuestionnaire';
 
 export interface ICheckboxOptions {
     /**

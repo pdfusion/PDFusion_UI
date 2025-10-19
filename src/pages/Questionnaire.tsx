@@ -6,10 +6,7 @@ import PDRadioScale from '../components/widgets/PDRadioScale.tsx';
 import PDCheckboxGroup from '../components/widgets/PDCheckboxGroup.tsx';
 import { useParams } from 'react-router-dom';
 import { useCasesDataAPI } from '../hooks/useCasesDataAPI';
-
-interface IQuestionnaire {
-  
-}
+import type { IQuestionnaire } from './IQuestionnaire.tsx';
 
 const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
   const {

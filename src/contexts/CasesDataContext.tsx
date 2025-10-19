@@ -1,15 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { casesSeed } from '../data/casesSeed';
-
-export interface IQuestionnaireFormData {
-    [key: string]: string | string[],
-    caseId: string,
-    userId: string,
-    name: string,
-    age: string,
-    feelsFit: string,
-    gameDevices: string[]
-};
+import type { IQuestionnaireFormData } from '../pages/IQuestionnaire';
 
 export type CaseDataType = {
     id: string,

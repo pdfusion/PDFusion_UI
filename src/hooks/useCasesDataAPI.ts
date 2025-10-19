@@ -1,6 +1,7 @@
 import { useCasesData } from '../contexts/CasesDataContext';
-import { defaultCaseData, type CaseDataType, type IQuestionnaireFormData } from '../contexts/CasesDataContext';
+import { defaultCaseData, type CaseDataType } from '../contexts/CasesDataContext';
 import { casesSeed } from '../data/casesSeed';
+import type { IQuestionnaireFormData } from '../pages/IQuestionnaire';
 
 export const useCasesDataAPI = () => {
     const { casesData, setCasesData } = useCasesData();
