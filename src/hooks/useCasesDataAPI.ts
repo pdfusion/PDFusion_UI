@@ -4,15 +4,21 @@ import { casesSeed } from '../data/casesSeed';
 
 export const useCasesDataAPI = () => {
     const { casesData, setCasesData } = useCasesData();
-
     const initFormData: IQuestionnaireFormData = defaultCaseData.formData;
+    const LOCAL_STORAGE_KEY = 'casesData';
 
     const getCases = async (): Promise<CaseDataType[]> => {
         try {
-            return await Promise.resolve(casesSeed);
+            const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+            if (stored) {
+                const parsed = JSON.parse(stored) as CaseDataType[];
+                return Promise.resolve(parsed);
+            } else {
+                return Promise.resolve(casesSeed);
+            }
         } catch (error) {
             console.error('Failed to fetch case data:', error);
-            throw error;
+            return Promise.resolve(casesSeed); // fallback to seed data on error
         }
     };
 
@@ -29,15 +35,29 @@ export const useCasesDataAPI = () => {
 
     const createCase = async (formData: IQuestionnaireFormData): Promise<CaseDataType> => {
         try {
-            const createdCase = {
-                id: formData.caseId,
-                userId: formData.userId,
-                formData,
+            const caseId = formData.caseId || `pdfn:cases:${casesData.length + 1}`;
+            const userId = formData.userId || `pdfn:users:${casesData.length + 1}`;
+            const createdCase: CaseDataType = {
+                id: caseId,
+                userId,
+                formData: {
+                    ...formData,
+                    caseId,
+                    userId
+                }
             };
-            const updatedCases = [...casesData, createdCase];
-            setCasesData(updatedCases);
 
-            return await getCaseById(createdCase.id);
+            // Avoid duplicate case IDs
+            const exists = casesData.some((c) => c.id === createdCase.id);
+            if (exists) {
+                console.warn(`Case with ID ${createdCase.id} already exists. Skipping creation.`);
+                return createdCase;
+            }
+
+            // Update context state
+            setCasesData((prevCases) => [...prevCases, createdCase]);
+
+            return createdCase;
         } catch (error) {
             console.error('Failed to create case:', error);
             throw error;
@@ -47,9 +67,17 @@ export const useCasesDataAPI = () => {
     const updateFormDataByCaseId = async (caseId: string, formData: IQuestionnaireFormData): Promise<CaseDataType> => {
         try {
             if (!caseId) throw new Error(`No case found with id ${caseId}`);
+            
+            // Ensure formData has the correct caseId and userId
+            const updatedFormData: IQuestionnaireFormData = {
+                ...formData,
+                caseId,
+            };
 
             const updatedCases = casesData.map((caseItem) =>
-                caseItem.userId === caseId ? { ...caseItem, formData } : caseItem
+            caseItem.id === caseId
+                ? { ...caseItem, formData: updatedFormData }
+                : caseItem
             );
 
             setCasesData(updatedCases);

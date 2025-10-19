@@ -24,10 +24,8 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
   
   useEffect(() => {
     (async () => {
-      console.log('sr log id from params:', id);
       if(id) {
         const caseDataRes = await getCaseById(id);
-        console.log('sr log casesDataRes:', caseDataRes);
         setFormData(caseDataRes.formData);
       }
     })();

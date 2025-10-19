@@ -51,8 +51,8 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <CasesDataProvider>
-        <Router>
+      <Router>
+        <CasesDataProvider>
           <NavTabs />
           <Container maxWidth="sm" sx={{ mt: 4 }}>
             <Routes>
@@ -64,8 +64,8 @@ const App: React.FC = () => {
               />
             </Routes>
           </Container>
-        </Router>
-      </CasesDataProvider>
+        </CasesDataProvider>
+      </Router>
     </ThemeProvider>
   );
 };
