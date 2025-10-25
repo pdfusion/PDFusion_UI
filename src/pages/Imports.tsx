@@ -1,16 +1,22 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import PDForm from '../components/widgets/PDForm';
+import PDDocumentImport from '../components/widgets/PDDocumentImport';
+import PDButton from '../components/widgets/PDButton';
 
 const Report: React.FC = () => {
+
   return (
-    <div>
-      <Typography variant="h4" gutterBottom>
-        Imports Page
-      </Typography>
-      <Typography>
-        This is where imports will be handled.
-      </Typography>
-    </div>
+    <PDForm
+    >
+      <PDDocumentImport
+        caption={"Restore data from JSON file"}
+      />
+
+      <PDButton
+        caption={"Save session data (downloads JSON file)"}
+        buttonType={"save"}
+      />
+    </PDForm>
   );
 };
 

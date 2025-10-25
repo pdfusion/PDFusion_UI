@@ -88,9 +88,6 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
       <PDButton
         buttonType={"save"}
       />
-      <PDButton
-        buttonType={"restore"}
-      />
     </PDForm>
   );
 };
