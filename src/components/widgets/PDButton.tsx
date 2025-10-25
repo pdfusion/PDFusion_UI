@@ -26,10 +26,10 @@ export interface IPDButton {
     /**
      * Function to handle button click
      */
-    handleClick?: (event: ChangeEvent<HTMLInputElement>) => void
+    handleChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-const PDButton = ({ buttonType, handleClick, caption }:IPDButton): JSX.Element => {
+const PDButton = ({ buttonType, handleChange, caption }:IPDButton): JSX.Element => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleBackup = () => {
@@ -78,13 +78,17 @@ const PDButton = ({ buttonType, handleClick, caption }:IPDButton): JSX.Element =
                     accept="application/json"
                     ref={fileInputRef}
                     style={{ display: 'none' }}
-                    onChange={handleClick}
+                    onChange={handleChange}
                 />
             </>
             );
         }
         else if(buttonType === "save") {
-
+            return (
+                <Button type="submit" variant="contained" color="primary" onClick={()=>{}}>
+                    Save
+                </Button>
+            );
         }
         return <></>;
     }

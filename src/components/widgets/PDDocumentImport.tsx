@@ -50,7 +50,7 @@ const PDDocumentImport = ({ caption }: IPDDocumentImport): JSX.Element => {
     <PDButton
       caption={caption}
       buttonType={"restore"}
-      handleClick={handleFileUpload}
+      handleChange={handleFileUpload}
     />
     {error && <p style={{ color: 'red' }}>{error}</p>}
     {success && <p style={{ color: 'green' }}>{success}</p>}
