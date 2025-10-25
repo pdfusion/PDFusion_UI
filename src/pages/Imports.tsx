@@ -13,8 +13,8 @@ const Report: React.FC = () => {
       />
 
       <PDButton
-        caption={"Save session data (downloads JSON file)"}
-        buttonType={"save"}
+        caption={"Bakup app data (downloads JSON file)"}
+        buttonType={"backup"}
       />
     </PDForm>
   );

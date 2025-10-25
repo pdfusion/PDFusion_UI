@@ -10,7 +10,7 @@ export interface IPDButton {
     /**
      * The type of button.
     */
-    buttonType: "save" | "restore",
+    buttonType: "save" | "restore" | "backup",
     /**
      * The form data.
     */
@@ -32,7 +32,7 @@ export interface IPDButton {
 const PDButton = ({ buttonType, handleClick, caption }:IPDButton): JSX.Element => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const handleDownload = () => {
+    const handleBackup = () => {
         const casesData = localStorage.getItem(LOCAL_STORAGE_CASES_KEY);
         const usersData = localStorage.getItem(LOCAL_STORAGE_USERS_KEY);
 
@@ -60,13 +60,14 @@ const PDButton = ({ buttonType, handleClick, caption }:IPDButton): JSX.Element =
     };
 
     function getButton(buttonType: string) {
-        if(buttonType === "save")
+        if(buttonType === "backup"){
             return (
-                <Button type="submit" variant="contained" color="primary" onClick={handleDownload}>
-                    Save
+                <Button type="submit" variant="contained" color="primary" onClick={handleBackup}>
+                    Backup
                 </Button>
             );
-        else if(buttonType === "restore")
+        }
+        else if(buttonType === "restore") {
             return (
             <>
                 <Button variant="outlined" color="info" onClick={handleRestoreClick}>
@@ -81,6 +82,10 @@ const PDButton = ({ buttonType, handleClick, caption }:IPDButton): JSX.Element =
                 />
             </>
             );
+        }
+        else if(buttonType === "save") {
+
+        }
         return <></>;
     }
 
