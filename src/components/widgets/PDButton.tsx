@@ -1,35 +1,54 @@
-import React, { useRef, type JSX } from 'react';
+import React, { useRef, type ChangeEvent, type JSX } from 'react';
 import {
     Box,
-    Button
+    Button,
+    Typography
 } from '@mui/material';
+import { LOCAL_STORAGE_CASES_KEY, LOCAL_STORAGE_USERS_KEY } from '../../data/constants';
 
 export interface IPDButton {
     /**
      * The type of button.
     */
-    buttonType: "save" | "restore",
+    buttonType: "save" | "restore" | "backup",
     /**
      * The form data.
     */
     formData?: any,
     /**
+     * The field caption.
+     */
+    caption?: string,
+    /**
      * State function to set formData.
     */
     setFormData?: React.Dispatch<React.SetStateAction<any>>
+    /**
+     * Function to handle button click
+     */
+    handleChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-const PDButton = ({ buttonType, formData, setFormData=() => {} }:IPDButton): JSX.Element => {
+const PDButton = ({ buttonType, handleChange, caption }:IPDButton): JSX.Element => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const handleDownload = () => {
-        const jsonData = JSON.stringify(formData, null, 2);
-        const blob = new Blob([jsonData], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
+    const handleBackup = () => {
+        const casesData = localStorage.getItem(LOCAL_STORAGE_CASES_KEY);
+        const usersData = localStorage.getItem(LOCAL_STORAGE_USERS_KEY);
 
+        const combinedData = {
+            casesData: casesData ? JSON.parse(casesData) : [],
+            usersData: usersData ? JSON.parse(usersData) : [],
+        };
+
+        const blob = new Blob([JSON.stringify(combinedData, null, 2)], {
+            type: 'application/json',
+        });
+
+        const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
-        link.download = 'questionnaire-data.json';
+        link.download = 'pdfusionData.json';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -40,33 +59,15 @@ const PDButton = ({ buttonType, formData, setFormData=() => {} }:IPDButton): JSX
         fileInputRef.current?.click();
     };
 
-    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-        try {
-            const result = e.target?.result as string;
-            const parsedData = JSON.parse(result);
-            setFormData({
-                ...parsedData
-            });
-        } catch (error) {
-            console.error('Invalid JSON file:', error);
-        }
-        };
-        reader.readAsText(file);
-    };
-
     function getButton(buttonType: string) {
-        if(buttonType === "save")
+        if(buttonType === "backup"){
             return (
-                <Button type="submit" variant="contained" color="primary" onClick={handleDownload}>
-                    Save
+                <Button type="submit" variant="contained" color="primary" onClick={handleBackup}>
+                    Backup
                 </Button>
             );
-        else if(buttonType === "restore")
+        }
+        else if(buttonType === "restore") {
             return (
             <>
                 <Button variant="outlined" color="info" onClick={handleRestoreClick}>
@@ -77,17 +78,28 @@ const PDButton = ({ buttonType, formData, setFormData=() => {} }:IPDButton): JSX
                     accept="application/json"
                     ref={fileInputRef}
                     style={{ display: 'none' }}
-                    onChange={handleFileUpload}
+                    onChange={handleChange}
                 />
             </>
             );
+        }
+        else if(buttonType === "save") {
+            return (
+                <Button type="submit" variant="contained" color="primary" onClick={()=>{}}>
+                    Save
+                </Button>
+            );
+        }
         return <></>;
     }
 
     return (
+    <>
+        {caption && <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{caption}</Typography>}
         <Box sx={{ display: 'flex', gap: 2 }}>
             {getButton(buttonType)}
         </Box>
+    </>
     );
 };
 

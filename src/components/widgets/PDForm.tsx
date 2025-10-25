@@ -12,15 +12,15 @@ interface IPDForm {
     /**
      * The form data.
     */
-    formData: any,
+    formData?: any,
     /**
      * State function to set formData.
     */
-    setFormData: React.Dispatch<React.SetStateAction<any>>,
+    setFormData?: React.Dispatch<React.SetStateAction<any>>,
     /**
      * Function to handle form submit.
     */
-    onSubmit: (event: React.FormEvent) => void
+    onSubmit?: (event: React.FormEvent) => void
 }
 
 const PDForm = ({ formData, setFormData, onSubmit,  children }:IPDForm): JSX.Element => {
