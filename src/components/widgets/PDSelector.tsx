@@ -35,6 +35,10 @@ const PDSelector = ({ name, caption }: IPDSelector): JSX.Element => {
     setIsPanelOpen(false);
   };
 
+  const handleClear = (): void => {
+    setSelectedName('');
+  };
+
   return (
     <div className={styles.selectorContainer}>
       <PDTextField
@@ -43,10 +47,16 @@ const PDSelector = ({ name, caption }: IPDSelector): JSX.Element => {
         value={selectedName}
       />
 
+    <div style={{ display: 'flex', gap: '8px' }}>
       <PDButton
         buttonType="select"
-        handleSelect={() => setIsPanelOpen(true)}
+        handleClick={() => setIsPanelOpen(true)}
       />
+      <PDButton
+        buttonType="clear"
+        handleClick={handleClear}
+      />
+    </div>
 
       {isPanelOpen && (
         <div className={styles.slideInPanel}>
