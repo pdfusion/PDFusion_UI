@@ -24,9 +24,10 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
 
   const [formData, setFormData] = useState(initFormData);
   const [usersData, setUsersData] = useState<UserDataType[]>([defaultUserData]);
-  const [personsOptions, setPersonsOptions] = useState<IPDSelectorOptions[]>([]);
+  const [patientOptions, setPatientOptions] = useState<IPDSelectorOptions[]>([]);
+  const [caseManagerOptions, setCaseManagerOptions] = useState<IPDSelectorOptions[]>([]);
   const { id } = useParams<{ id: string }>();
-  const columns: IPDSelectorColumn[] = [
+  const personColumns: IPDSelectorColumn[] = [
     { key: "id", label: "ID"},
     { key: "name", label: "Name"}
   ]
@@ -34,14 +35,22 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
   useEffect(() => {
     (async () => {
       const usersDataRes = await getUsers();
-      const usersOptions = (usersDataRes || []).map((user: UserDataType) => {
+      const filteredPatients = (usersDataRes || []).filter((user: UserDataType) => user.role === "patient").map((user: UserDataType) => {
         return {
           id: user.id,
           name: user.name
         }
       });
+      const filteredCMs = (usersDataRes || []).filter((user: UserDataType) => user.role === "caseManager").map((user: UserDataType) => {
+        return {
+          id: user.id,
+          name: user.name
+        }
+      });
+
       setUsersData(usersDataRes);
-      setPersonsOptions(usersOptions);
+      setPatientOptions(filteredPatients);
+      setCaseManagerOptions(filteredCMs);
       
       if(id) {
         const caseDataRes = await getCaseById(id);
@@ -68,9 +77,17 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
       <PDSelector
         name={"patientId"}
         caption={"Patient"}
-        options={personsOptions}
-        columns={columns}
+        options={patientOptions}
+        columns={personColumns}
         value={usersData?.find((user: UserDataType) => user.id === formData.patientId)?.name || ''}
+      />
+
+      <PDSelector
+        name={"caseManagerId"}
+        caption={"Case manager"}
+        options={caseManagerOptions}
+        columns={personColumns}
+        value={usersData?.find((user: UserDataType) => user.id === formData.caseManagerId)?.name || ''}
       />
 
       <PDTextField

@@ -81,6 +81,7 @@ export const useCasesDataAPI = () => {
                 ? { 
                     ...caseItem,
                     patientId: updatedFormData.patientId,
+                    caseManagerId: updatedFormData.caseManagerId,
                     formData: updatedFormData
                 }
                 : caseItem
