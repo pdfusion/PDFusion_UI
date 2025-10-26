@@ -7,6 +7,7 @@ import PDCheckboxGroup from '../components/widgets/PDCheckboxGroup.tsx';
 import { useParams } from 'react-router-dom';
 import { useCasesDataAPI } from '../hooks/useCasesDataAPI';
 import type { IQuestionnaire } from './IQuestionnaire.tsx';
+import PDSelector from '../components/widgets/PDSelector.tsx';
 
 const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
   const {
@@ -84,6 +85,8 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
           { name: "option5", label: "Option 5"},
         ]}
       />
+
+      <PDSelector/>
 
       <PDButton
         buttonType={"save"}
