@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { useCasesDataAPI } from '../hooks/useCasesDataAPI';
 import type { IQuestionnaire } from './IQuestionnaire.tsx';
 import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../components/widgets/PDSelector.tsx';
-import type { UserDataType } from "../contexts/UsersDataContext.tsx";
+import { defaultUserData, type UserDataType } from "../contexts/UsersDataContext.tsx";
 import { useUsersDataAPI } from '../hooks/useUsersDataAPI.ts';
 
 const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
@@ -19,10 +19,11 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
       updateCase,
     } = useCasesDataAPI();
   const {
-      getUsers
+      getUsers,
     } = useUsersDataAPI();
 
   const [formData, setFormData] = useState(initFormData);
+  const [usersData, setUsersData] = useState<UserDataType[]>([defaultUserData]);
   const [personsOptions, setPersonsOptions] = useState<IPDSelectorOptions[]>([]);
   const { id } = useParams<{ id: string }>();
   const columns: IPDSelectorColumn[] = [
@@ -44,6 +45,7 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
 
         setFormData(caseDataRes.formData);
         setPersonsOptions(usersOptions);
+        setUsersData(usersDataRes);
       }
     })();
   }, [id]);
@@ -68,6 +70,7 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
         caption={"Patient"}
         options={personsOptions}
         columns={columns}
+        value={usersData?.find((user: UserDataType) => user.id === formData.patientId)?.name || ''}
       />
 
       <PDTextField
