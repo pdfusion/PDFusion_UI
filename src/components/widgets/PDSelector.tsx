@@ -17,7 +17,15 @@ export interface IPDSelector {
     /**
      * The field caption.
     */
-    caption: string
+    caption: string,
+    /**
+     * The form data. Defaults to formData from parent PDForm.
+    */
+    formData?: any,
+    /**
+     * State function to set formData. Defaults to setFormData from parent PDForm.
+    */
+    setFormData?: React.Dispatch<React.SetStateAction<any>>
 }
 
 const mockData: Option[] = [
@@ -26,12 +34,13 @@ const mockData: Option[] = [
   { id: 'A003', name: 'Option 3', description: 'Third option' },
 ];
 
-const PDSelector = ({ name, caption }: IPDSelector): JSX.Element => {
+const PDSelector = ({ name, caption, formData, setFormData }: IPDSelector): JSX.Element => {
   const [selectedName, setSelectedName] = useState<string>('');
   const [isPanelOpen, setIsPanelOpen] = useState<boolean>(false);
 
-  const handleSelect = (selName: string): void => {
+  const handleSelect = (selName: string, selId: string): void => {
     setSelectedName(selName);
+    if(setFormData) setFormData({ ...formData, [name]: selId });
     setIsPanelOpen(false);
   };
 
@@ -74,7 +83,7 @@ const PDSelector = ({ name, caption }: IPDSelector): JSX.Element => {
             </thead>
             <tbody>
               {mockData.map((item) => (
-                <tr key={item.id} onClick={() => handleSelect(item.name)}>
+                <tr key={item.id} onClick={() => handleSelect(item.name, item.id)}>
                   <td>{item.id}</td>
                   <td>{item.name}</td>
                   <td>{item.description}</td>

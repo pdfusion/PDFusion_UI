@@ -44,10 +44,9 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
       setFormData={setFormData}
       onSubmit={handleSubmit}
     >
-      <PDTextField
-        name={"name"}
-        caption={"Name"}
-        value={formData.name}
+      <PDSelector
+        name={"patientId"}
+        caption={"Patient"}
       />
 
       <PDTextField
@@ -84,11 +83,6 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
           { name: "option4", label: "Option 4"},
           { name: "option5", label: "Option 5"},
         ]}
-      />
-
-      <PDSelector
-        name={"patientSelect"}
-        caption={"Patient"}
       />
 
       <PDButton

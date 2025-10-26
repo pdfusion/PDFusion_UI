@@ -23,7 +23,7 @@ export interface IPDTextField {
     */
     formData?: any,
     /**
-     * State function to set formData.
+     * State function to set formData. Defaults to setFormData from parent PDForm.
     */
     setFormData?: React.Dispatch<React.SetStateAction<any>>
 }
