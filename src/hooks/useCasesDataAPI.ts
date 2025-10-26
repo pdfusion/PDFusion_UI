@@ -78,7 +78,12 @@ export const useCasesDataAPI = () => {
 
             const updatedCases = casesData.map((caseItem) =>
             caseItem.id === caseId
-                ? { ...caseItem, formData: updatedFormData }
+                ? { 
+                    ...caseItem,
+                    patientId: updatedFormData.patientId,
+                    caseManagerId: updatedFormData.caseManagerId,
+                    formData: updatedFormData
+                }
                 : caseItem
             );
 

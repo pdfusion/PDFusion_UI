@@ -1,0 +1,61 @@
+.selectorContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.selectorInput {
+  padding: 8px;
+  width: 200px;
+}
+
+.selectorButton {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.slideInPanel {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 400px;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease-out;
+  z-index: 100;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.panelTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.panelTable th,
+.panelTable td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.panelTable tr:hover {
+  background-color: #f0f0f0;
+}
