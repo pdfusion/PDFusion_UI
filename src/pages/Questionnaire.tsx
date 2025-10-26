@@ -86,7 +86,10 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
         ]}
       />
 
-      <PDSelector/>
+      <PDSelector
+        name={"patientSelect"}
+        caption={"Patient"}
+      />
 
       <PDButton
         buttonType={"save"}

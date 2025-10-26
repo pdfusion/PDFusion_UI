@@ -19,7 +19,7 @@ export interface IPDTextField {
     */
     value: string,
     /**
-     * The form data.
+     * The form data. Defaults to formData from parent PDForm.
     */
     formData?: any,
     /**
@@ -43,7 +43,6 @@ const PDTextField = ({ name, caption, value, formData, setFormData=() => {} }:IP
         >
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{caption}</Typography>
             <TextField
-                label={name}
                 variant="outlined"
                 value={value}
                 onChange={handleChange(name)}
