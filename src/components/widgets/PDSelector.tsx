@@ -2,12 +2,19 @@ import { useState, type JSX } from 'react';
 import styles from '../../styles/PDSelector.module.css';
 import PDButton from '../widgets/PDButton';
 import PDTextField from '../widgets/PDTextField';
+import { getIdFromPdfn } from '../../utils/helpers';
 
-interface Option {
-  id: string;
-  name: string;
-  description: string;
+export interface IPDSelectorOptions {
+    [key: string]: string,
+    id: string,
+    name: string
 }
+
+export interface IPDSelectorColumn {
+  key: string,
+  label: string,
+}
+
 
 export interface IPDSelector {
     /**
@@ -19,6 +26,14 @@ export interface IPDSelector {
     */
     caption: string,
     /**
+     * Options for selection.
+    */
+    options: IPDSelectorOptions[],
+    /**
+     * Columns for selection data display.
+    */
+    columns: IPDSelectorColumn[],
+    /**
      * The form data. Defaults to formData from parent PDForm.
     */
     formData?: any,
@@ -28,13 +43,7 @@ export interface IPDSelector {
     setFormData?: React.Dispatch<React.SetStateAction<any>>
 }
 
-const mockData: Option[] = [
-  { id: 'A001', name: 'Option 1', description: 'First option' },
-  { id: 'A002', name: 'Option 2', description: 'Second option' },
-  { id: 'A003', name: 'Option 3', description: 'Third option' },
-];
-
-const PDSelector = ({ name, caption, formData, setFormData }: IPDSelector): JSX.Element => {
+const PDSelector = ({ name, caption, formData, setFormData, options, columns }: IPDSelector): JSX.Element => {
   const [selectedName, setSelectedName] = useState<string>('');
   const [isPanelOpen, setIsPanelOpen] = useState<boolean>(false);
 
@@ -76,17 +85,19 @@ const PDSelector = ({ name, caption, formData, setFormData }: IPDSelector): JSX.
           <table className={styles.panelTable}>
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
+                {columns.map((col) => (
+                  <th key={col.key}>{col.label}</th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              {mockData.map((item) => (
+              {options.map((item: IPDSelectorOptions) => (
                 <tr key={item.id} onClick={() => handleSelect(item.name, item.id)}>
-                  <td>{item.id}</td>
-                  <td>{item.name}</td>
-                  <td>{item.description}</td>
+                  {columns.map((col: IPDSelectorColumn) => (
+                    <td key={col.key}>
+                      {col.key === 'id' ? getIdFromPdfn(item[col.key]) : item[col.key]}
+                    </td>
+                  ))}
                 </tr>
               ))}
             </tbody>

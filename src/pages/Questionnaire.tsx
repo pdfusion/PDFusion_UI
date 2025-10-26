@@ -7,7 +7,9 @@ import PDCheckboxGroup from '../components/widgets/PDCheckboxGroup.tsx';
 import { useParams } from 'react-router-dom';
 import { useCasesDataAPI } from '../hooks/useCasesDataAPI';
 import type { IQuestionnaire } from './IQuestionnaire.tsx';
-import PDSelector from '../components/widgets/PDSelector.tsx';
+import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../components/widgets/PDSelector.tsx';
+import type { UserDataType } from "../contexts/UsersDataContext.tsx";
+import { useUsersDataAPI } from '../hooks/useUsersDataAPI.ts';
 
 const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
   const {
@@ -16,15 +18,32 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
       createCase,
       updateCase,
     } = useCasesDataAPI();
+  const {
+      getUsers
+    } = useUsersDataAPI();
 
   const [formData, setFormData] = useState(initFormData);
+  const [personsOptions, setPersonsOptions] = useState<IPDSelectorOptions[]>([]);
   const { id } = useParams<{ id: string }>();
+  const columns: IPDSelectorColumn[] = [
+    { key: "id", label: "ID"},
+    { key: "name", label: "Name"}
+  ]
   
   useEffect(() => {
     (async () => {
       if(id) {
         const caseDataRes = await getCaseById(id);
+        const usersDataRes = await getUsers();
+        const usersOptions = (usersDataRes || []).map((user: UserDataType) => {
+          return {
+            id: user.id,
+            name: user.name
+          }
+        });
+
         setFormData(caseDataRes.formData);
+        setPersonsOptions(usersOptions);
       }
     })();
   }, [id]);
@@ -47,6 +66,8 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
       <PDSelector
         name={"patientId"}
         caption={"Patient"}
+        options={personsOptions}
+        columns={columns}
       />
 
       <PDTextField
