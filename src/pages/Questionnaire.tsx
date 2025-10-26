@@ -33,19 +33,19 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
   
   useEffect(() => {
     (async () => {
+      const usersDataRes = await getUsers();
+      const usersOptions = (usersDataRes || []).map((user: UserDataType) => {
+        return {
+          id: user.id,
+          name: user.name
+        }
+      });
+      setUsersData(usersDataRes);
+      setPersonsOptions(usersOptions);
+      
       if(id) {
         const caseDataRes = await getCaseById(id);
-        const usersDataRes = await getUsers();
-        const usersOptions = (usersDataRes || []).map((user: UserDataType) => {
-          return {
-            id: user.id,
-            name: user.name
-          }
-        });
-
         setFormData(caseDataRes.formData);
-        setPersonsOptions(usersOptions);
-        setUsersData(usersDataRes);
       }
     })();
   }, [id]);
