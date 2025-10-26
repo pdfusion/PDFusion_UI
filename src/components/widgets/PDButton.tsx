@@ -10,7 +10,7 @@ export interface IPDButton {
     /**
      * The type of button.
     */
-    buttonType: "save" | "restore" | "backup",
+    buttonType: "save" | "restore" | "backup" | "select",
     /**
      * The form data.
     */
@@ -27,9 +27,13 @@ export interface IPDButton {
      * Function to handle button click
      */
     handleChange?: (event: ChangeEvent<HTMLInputElement>) => void
+    /**
+     * Function to handle select button click
+     */
+    handleSelect?: () => void
 }
 
-const PDButton = ({ buttonType, handleChange, caption }:IPDButton): JSX.Element => {
+const PDButton = ({ buttonType, handleChange, handleSelect, caption }:IPDButton): JSX.Element => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleBackup = () => {
@@ -87,6 +91,13 @@ const PDButton = ({ buttonType, handleChange, caption }:IPDButton): JSX.Element 
             return (
                 <Button type="submit" variant="contained" color="primary" onClick={()=>{}}>
                     Save
+                </Button>
+            );
+        }
+        else if(buttonType === "select") {
+        return (
+                <Button variant="contained" color="secondary" onClick={handleSelect}>
+                    {caption || "Select"}
                 </Button>
             );
         }

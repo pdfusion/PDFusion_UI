@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../../styles/PDSelector.module.css';
+import PDButton from '../widgets/PDButton'; // Adjust path as needed
 
 interface Option {
   id: string;
@@ -31,9 +32,10 @@ const PDSelector: React.FC = () => {
         placeholder="Select an option"
         className={styles.selectorInput}
       />
-      <button onClick={() => setIsPanelOpen(true)} className={styles.selectorButton}>
-        Select
-      </button>
+      <PDButton
+        buttonType="select"
+        handleSelect={() => setIsPanelOpen(true)}
+      />
 
       {isPanelOpen && (
         <div className={styles.slideInPanel}>
