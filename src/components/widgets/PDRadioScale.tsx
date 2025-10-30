@@ -34,7 +34,11 @@ export interface IPDRadioScale {
     /**
      * State function to set formData.
     */
-    setFormData?: React.Dispatch<React.SetStateAction<any>>
+    setFormData?: React.Dispatch<React.SetStateAction<any>>,
+    /**
+     * An array of string labels for each radio option.
+    */
+    optionLabels?: string[],
 }
 
 const PDRadioScale = ({
@@ -44,7 +48,8 @@ const PDRadioScale = ({
     lefttEndLabel,
     value,
     formData,
-    setFormData = () => {}
+    setFormData = () => {},
+    optionLabels
 }: IPDRadioScale): JSX.Element => {
     const handleChange = (field: keyof typeof formData) => (
         event: React.ChangeEvent<HTMLInputElement>
@@ -59,10 +64,10 @@ const PDRadioScale = ({
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap' }}>
                     <Typography variant="body2" sx={{ minWidth: 120 }}>{lefttEndLabel}</Typography>
                     <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexGrow: 1 }}>
-                        {[1, 2, 3, 4, 5, 6].map((val) => (
+                        {(optionLabels || []).map((val) => (
                             <Box key={val} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mx: 1 }}>
                                 <Typography variant="caption" sx={{ mb: 0.5 }}>
-                                    Option {val}
+                                    {val}
                                 </Typography>
                                 <Radio
                                     value={val.toString()}
