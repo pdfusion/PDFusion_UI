@@ -2,9 +2,7 @@ import React, { type JSX } from 'react';
 import {
     Box,
     FormControl,
-    FormControlLabel,
     Radio,
-    RadioGroup,
     Typography
 } from '@mui/material';
 
@@ -39,48 +37,47 @@ export interface IPDRadioScale {
     setFormData?: React.Dispatch<React.SetStateAction<any>>
 }
 
-const PDRadioScale = ({ 
-    name, 
+const PDRadioScale = ({
+    name,
     caption,
-    rightEndLabel="no, that is not true",
-    lefttEndLabel="yes, that is true",
+    rightEndLabel,
+    lefttEndLabel,
     value,
     formData,
-    setFormData=() => {}
-}:IPDRadioScale): JSX.Element => {
+    setFormData = () => {}
+}: IPDRadioScale): JSX.Element => {
     const handleChange = (field: keyof typeof formData) => (
         event: React.ChangeEvent<HTMLInputElement>
-      ) => {
+    ) => {
         setFormData({ ...formData, [field]: event.target.value });
-      };
+    };
 
     return (
-      <>
-        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{caption}</Typography>
-        <FormControl component="fieldset">
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Typography variant="body2" sx={{ minWidth: 120 }}>{lefttEndLabel}</Typography>
-            <RadioGroup
-                row
-                value={value}
-                onChange={handleChange(name)}
-                sx={{ flexGrow: 1, justifyContent: 'center' }}
-            >
-            {[1, 2, 3, 4, 5, 6].map((value) => (
-                <FormControlLabel
-                    key={value}
-                    value={value.toString()}
-                    control={<Radio />}
-                    label={value.toString()}
-                />
-            ))}
-            </RadioGroup>
-            <Typography variant="body2" sx={{ minWidth: 140, textAlign: 'right' }}>
-            {rightEndLabel}
-            </Typography>
-        </Box>
-        </FormControl>
-      </>
+        <>
+            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{caption}</Typography>
+            <FormControl component="fieldset" fullWidth>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap' }}>
+                    <Typography variant="body2" sx={{ minWidth: 120 }}>{lefttEndLabel}</Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexGrow: 1 }}>
+                        {[1, 2, 3, 4, 5, 6].map((val) => (
+                            <Box key={val} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mx: 1 }}>
+                                <Typography variant="caption" sx={{ mb: 0.5 }}>
+                                    Option {val}
+                                </Typography>
+                                <Radio
+                                    value={val.toString()}
+                                    checked={value === val.toString()}
+                                    onChange={handleChange(name)}
+                                />
+                            </Box>
+                        ))}
+                    </Box>
+                    <Typography variant="body2" sx={{ minWidth: 140, textAlign: 'right' }}>
+                        {rightEndLabel}
+                    </Typography>
+                </Box>
+            </FormControl>
+        </>
     );
 };
 
