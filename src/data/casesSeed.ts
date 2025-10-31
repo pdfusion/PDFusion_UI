@@ -10,8 +10,8 @@ export const casesSeed: CaseDataType[] = [
             caseManagerId: 'pdfn:users:2',
             name: 'Alice Wonder',
             age: '30',
-            feelsFit: '5',
-            feelsCalm: "2",
+            feelFit: '5',
+            feelCalm: "2",
             gameDevices: ['gameDeviceComputer', 'gameDeviceConsole']
         }
     },
@@ -24,8 +24,8 @@ export const casesSeed: CaseDataType[] = [
             caseManagerId: 'pdfn:users:4',
             name: "Jasmine Patel",
             age: "25",
-            feelsFit: "2",
-            feelsCalm: "3",
+            feelFit: "2",
+            feelCalm: "3",
             gameDevices: [
                 "gameDeviceComputer"
             ],
@@ -44,8 +44,8 @@ export const casesSeed: CaseDataType[] = [
             caseManagerId: 'pdfn:users:6',
             name: "Darius Kim",
             age: "60",
-            feelsFit: "3",
-            feelsCalm: "1",
+            feelFit: "3",
+            feelCalm: "1",
             gameDevices: [
                 "gameDeviceDoNotPlay"
             ],

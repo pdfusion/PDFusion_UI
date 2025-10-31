@@ -25,8 +25,8 @@ export const defaultCaseData: CaseDataType = {
         caseManagerId: '',
         name: '',
         age: '',
-        feelsFit: '',
-        feelsCalm: '',
+        feelFit: '',
+        feelCalm: '',
         gameDevices: []
     }
 };

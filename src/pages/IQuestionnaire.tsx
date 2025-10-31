@@ -8,7 +8,7 @@ export interface IQuestionnaireFormData {
     caseManagerId: string,
     name: string,
     age: string,
-    feelsFit: string,
-    feelsCalm: string,
+    feelFit: string,
+    feelCalm: string,
     gameDevices: string[]
 };
