@@ -102,14 +102,29 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
         value={formData.feelsFit}
         rightEndLabel={"no, that is not true"}
         lefttEndLabel={"yes, that is true"}
-        optionLabels={["1", "2", "3", "4", "5"]}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
       />
 
       <PDRadioScale
         name={"feelsCalm"}
         caption={"I feel calm"}
         value={formData.feelsCalm}
-        optionLabels={["Not at all", "Somewhat", "Moderately so", "Very much so"]}
+        options={
+          [
+            { label: "Not at all", value: "1"},
+            { label: "Somewhat", value: "2"},
+            { label: "Moderately so", value: "3"},
+            { label: "Very much so", value: "4"}
+          ]
+        }
       />
 
       <PDCheckboxGroup
