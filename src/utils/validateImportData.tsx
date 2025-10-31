@@ -22,6 +22,7 @@ export const isValidImportData = (data: any): data is IPDImportFile => {
       typeof caseItem.formData.name === 'string' &&
       typeof caseItem.formData.age === 'string' &&
       typeof caseItem.formData.feelFit === 'string' &&
+      typeof caseItem.formData.feelCalm === 'string' &&
       Array.isArray(caseItem.formData.gameDevices)
     ) &&
     data[LOCAL_STORAGE_USERS_KEY].every((user) =>
