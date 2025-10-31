@@ -6,6 +6,11 @@ import {
     Typography
 } from '@mui/material';
 
+export interface IPDRadioScaleOption {
+    label: string,
+    value: string
+}
+
 export interface IPDRadioScale {
     /**
      * The field name.
@@ -38,7 +43,7 @@ export interface IPDRadioScale {
     /**
      * An array of string labels for each radio option.
     */
-    optionLabels?: string[],
+    options?: IPDRadioScaleOption[]
 }
 
 const PDRadioScale = ({
@@ -49,7 +54,7 @@ const PDRadioScale = ({
     value,
     formData,
     setFormData = () => {},
-    optionLabels
+    options
 }: IPDRadioScale): JSX.Element => {
     const handleChange = (field: keyof typeof formData) => (
         event: React.ChangeEvent<HTMLInputElement>
@@ -64,14 +69,14 @@ const PDRadioScale = ({
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap' }}>
                     <Typography variant="body2" sx={{ minWidth: 120 }}>{lefttEndLabel}</Typography>
                     <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexGrow: 1 }}>
-                        {(optionLabels || []).map((val) => (
-                            <Box key={val} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mx: 1 }}>
+                        {(options || []).map((option: IPDRadioScaleOption) => (
+                            <Box key={option.value} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mx: 1 }}>
                                 <Typography variant="caption" sx={{ mb: 0.5 }}>
-                                    {val}
+                                    {option.label}
                                 </Typography>
                                 <Radio
-                                    value={val.toString()}
-                                    checked={value === val.toString()}
+                                    value={option.value}
+                                    checked={value === option.value}
                                     onChange={handleChange(name)}
                                 />
                             </Box>
