@@ -11,6 +11,7 @@ export const casesSeed: CaseDataType[] = [
             name: 'Alice Wonder',
             age: '30',
             feelsFit: '5',
+            feelsCalm: "2",
             gameDevices: ['gameDeviceComputer', 'gameDeviceConsole']
         }
     },
@@ -24,6 +25,7 @@ export const casesSeed: CaseDataType[] = [
             name: "Jasmine Patel",
             age: "25",
             feelsFit: "2",
+            feelsCalm: "3",
             gameDevices: [
                 "gameDeviceComputer"
             ],
@@ -43,6 +45,7 @@ export const casesSeed: CaseDataType[] = [
             name: "Darius Kim",
             age: "60",
             feelsFit: "3",
+            feelsCalm: "1",
             gameDevices: [
                 "gameDeviceDoNotPlay"
             ],

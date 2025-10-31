@@ -26,6 +26,7 @@ export const defaultCaseData: CaseDataType = {
         name: '',
         age: '',
         feelsFit: '',
+        feelsCalm: '',
         gameDevices: []
     }
 };

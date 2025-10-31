@@ -9,5 +9,6 @@ export interface IQuestionnaireFormData {
     name: string,
     age: string,
     feelsFit: string,
+    feelsCalm: string,
     gameDevices: string[]
 };
