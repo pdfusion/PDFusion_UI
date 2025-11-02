@@ -1,7 +1,3 @@
-export interface IQuestionnaire {
-  
-};
-
 export interface IQuestionnaireFormData {
     [key: string]: string | string[],
     patientId: string,
@@ -10,5 +6,7 @@ export interface IQuestionnaireFormData {
     age: string,
     feelFit: string,
     feelCalm: string,
-    gameDevices: string[]
+    gameDevices: string[],
+    physicalAbility: string,
+    feelTired: string
 };
