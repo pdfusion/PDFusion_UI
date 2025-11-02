@@ -3,11 +3,20 @@ import { casesSeed } from '../data/casesSeed';
 import type { IQuestionnaireFormData } from '../pages/IQuestionnaire';
 import { LOCAL_STORAGE_CASES_KEY } from '../data/constants';
 
+export interface IScores {
+  generalFatigueScore: number,
+  physicalFatigueScore: number,
+  reducedActivityScore: number,
+  reducedMotivationScore: number,
+  mentalFatigueScore: number
+}
+
 export type CaseDataType = {
     id: string,
     patientId: string,
     caseManagerId: string,
-    formData: IQuestionnaireFormData
+    formData: IQuestionnaireFormData,
+    scores: IScores
 };
 
 export type CasesDataContextType = {
@@ -19,15 +28,24 @@ export const defaultCaseData: CaseDataType = {
     id: '',
     patientId: '',
     caseManagerId: '',
+    scores: {
+      generalFatigueScore: 0,
+      physicalFatigueScore: 0,
+      reducedActivityScore: 0,
+      reducedMotivationScore: 0,
+      mentalFatigueScore: 0
+    },
     formData: {
         caseId: '',
         patientId: '',
         caseManagerId: '',
         name: '',
         age: '',
-        feelsFit: '',
-        feelsCalm: '',
-        gameDevices: []
+        feelFit: '',
+        feelCalm: '',
+        gameDevices: [],
+        physicalAbleLittle: '',
+        feelTired: ''
     }
 };
 

@@ -6,12 +6,11 @@ import PDRadioScale from '../components/widgets/PDRadioScale.tsx';
 import PDCheckboxGroup from '../components/widgets/PDCheckboxGroup.tsx';
 import { useParams } from 'react-router-dom';
 import { useCasesDataAPI } from '../hooks/useCasesDataAPI';
-import type { IQuestionnaire } from './IQuestionnaire.tsx';
 import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../components/widgets/PDSelector.tsx';
 import { defaultUserData, type UserDataType } from "../contexts/UsersDataContext.tsx";
 import { useUsersDataAPI } from '../hooks/useUsersDataAPI.ts';
 
-const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
+const Questionnaire = (): JSX.Element => {
   const {
       initFormData,
       getCaseById,
@@ -97,9 +96,9 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
       />
 
       <PDRadioScale
-        name={"feelsFit"}
+        name={"feelFit"}
         caption={"I feel fit"}
-        value={formData.feelsFit}
+        value={formData.feelFit}
         rightEndLabel={"no, that is not true"}
         lefttEndLabel={"yes, that is true"}
         options={
@@ -114,9 +113,9 @@ const Questionnaire = ({  }:IQuestionnaire): JSX.Element => {
       />
 
       <PDRadioScale
-        name={"feelsCalm"}
+        name={"feelCalm"}
         caption={"I feel calm"}
-        value={formData.feelsCalm}
+        value={formData.feelCalm}
         options={
           [
             { label: "Not at all", value: "1"},
