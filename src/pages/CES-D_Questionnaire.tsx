@@ -95,33 +95,32 @@ const Questionnaire = (): JSX.Element => {
         value={formData.age}
       />
 
+<h2>During the Past Week...</h2>
+
       <PDRadioScale
-        name={"feelFit"}
-        caption={"I feel fit"}
-        value={formData.feelFit}
-        rightEndLabel={"no, that is not true"}
-        lefttEndLabel={"yes, that is true"}
+        name={"botheredbythings"}
+        caption={"I was bothered by things that usually don’t bother me."}
+        value={formData.botheredbythings}
         options={
           [
-            { label: "1", value: "1"},
-            { label: "2", value: "2"},
-            { label: "3", value: "3"},
-            { label: "4", value: "4"},
-            { label: "5", value: "5"}
+            { label: "Rarely or none of the time (less than 1 day)", value: "1"},
+            { label: "Some or little of the time (1-2 days)", value: "2"},
+            { label: "Occasionally or a moderate amount of time (3-4 days)", value: "3"},
+            { label: "Most or all of the time (5-7 days)", value: "4"}
           ]
         }
       />
 
       <PDRadioScale
-        name={"feelCalm"}
-        caption={"I feel calm"}
-        value={formData.feelCalm}
+        name={"feellikeeating"}
+        caption={"I did not feel like eating; my appetite was poor."}
+        value={formData.feellikeeating}
         options={
           [
-            { label: "Not at all", value: "1"},
-            { label: "Somewhat", value: "2"},
-            { label: "Moderately so", value: "3"},
-            { label: "Very much so", value: "4"}
+            { label: "Rarely or none of the time (less than 1 day)", value: "1"},
+            { label: "Some or little of the time (1-2 days)", value: "2"},
+            { label: "Occasionally or a moderate amount of time (3-4 days)", value: "3"},
+            { label: "Most or all of the time (5-7 days)", value: "4"}
           ]
         }
       />
