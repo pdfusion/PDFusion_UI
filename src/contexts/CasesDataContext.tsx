@@ -44,7 +44,7 @@ export const defaultCaseData: CaseDataType = {
         feelFit: '',
         feelCalm: '',
         gameDevices: [],
-        physicalAbility: '',
+        physicalAbleLittle: '',
         feelTired: ''
     }
 };

@@ -7,6 +7,6 @@ export interface IQuestionnaireFormData {
     feelFit: string,
     feelCalm: string,
     gameDevices: string[],
-    physicalAbility: string,
+    physicalAbleLittle: string,
     feelTired: string
 };
