@@ -18,6 +18,7 @@ import {
 } from 'react-router-dom';
 import { CasesDataProvider } from './contexts/CasesDataContext';
 import Questionnaire from './pages/Questionnaire';
+import CESD from './pages/CES-D_Questionnaire';
 import Imports from './pages/Imports';
 import CaseDashboard from './pages/CaseDashboard';
 import { UsersDataProvider } from './contexts/UsersDataContext';
@@ -65,6 +66,7 @@ const App: React.FC = () => {
                 <Route path="/imports" element={<Imports />} />
                 <Route path="/profiles" element={<Profiles />} />
                 <Route path="/cases/:id" element={<CaseDashboard />} />
+                <Route path="/ces-d" element={<CESD />} />
                 <Route path="/questionnaire" element={<Questionnaire />} />
                 <Route path="/questionnaire/:id" element={<Questionnaire />}
                 />
