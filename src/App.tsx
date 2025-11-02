@@ -69,6 +69,8 @@ const App: React.FC = () => {
                 <Route path="/profiles" element={<Profiles />} />
                 <Route path="/cases/:id" element={<CaseDashboard />} />
                 <Route path="/ces-d" element={<CESD />} />
+                <Route path="/fatigue" element={<Fatigue />} />
+                <Route path="/gaming" element={<Gaming />} />
                 <Route path="/questionnaire" element={<Questionnaire />} />
                 <Route path="/questionnaire/:id" element={<Questionnaire />}
                 />

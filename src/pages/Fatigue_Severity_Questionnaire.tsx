@@ -3,7 +3,6 @@ import PDForm from '../components/widgets/PDForm.tsx';
 import PDTextField from '../components/widgets/PDTextField.tsx';
 import PDButton from '../components/widgets/PDButton.tsx';
 import PDRadioScale from '../components/widgets/PDRadioScale.tsx';
-import PDCheckboxGroup from '../components/widgets/PDCheckboxGroup.tsx';
 import { useParams } from 'react-router-dom';
 import { useCasesDataAPI } from '../hooks/useCasesDataAPI.ts';
 import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../components/widgets/PDSelector.tsx';
@@ -100,13 +99,13 @@ const Questionnaire = (): JSX.Element => {
       <PDRadioScale
         name={"FSV1"}
         caption={"My motivation is lower when I am fatigued."}
-        value={formData.FSV1}
+        value={String(formData.FSV1 || '')}
         options={
           [
             { label: "Strongly Disagree", value: "1"},
             { label: "Disagree", value: "2"},
             { label: "Some-what Disagree", value: "3"},
-            { label: "Neither Agree or Disagree", value: "4"}
+            { label: "Neither Agree or Disagree", value: "4"},
             { label: "Some-what Agree", value: "5"},
             { label: "Agree", value: "6"},
             { label: "Strongly Agree", value: "7"}
@@ -117,13 +116,13 @@ const Questionnaire = (): JSX.Element => {
       <PDRadioScale
         name={"FSV2"}
         caption={"Exercise brings on my fatigue."}
-        value={formData.FSV2}
+        value={String(formData.FSV2 || '')}
         options={
           [
             { label: "Strongly Disagree", value: "1"},
             { label: "Disagree", value: "2"},
             { label: "Some-what Disagree", value: "3"},
-            { label: "Neither Agree or Disagree", value: "4"}
+            { label: "Neither Agree or Disagree", value: "4"},
             { label: "Some-what Agree", value: "5"},
             { label: "Agree", value: "6"},
             { label: "Strongly Agree", value: "7"}

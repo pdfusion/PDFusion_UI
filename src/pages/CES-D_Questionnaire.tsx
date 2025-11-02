@@ -3,7 +3,6 @@ import PDForm from '../components/widgets/PDForm.tsx';
 import PDTextField from '../components/widgets/PDTextField.tsx';
 import PDButton from '../components/widgets/PDButton.tsx';
 import PDRadioScale from '../components/widgets/PDRadioScale.tsx';
-import PDCheckboxGroup from '../components/widgets/PDCheckboxGroup.tsx';
 import { useParams } from 'react-router-dom';
 import { useCasesDataAPI } from '../hooks/useCasesDataAPI.ts';
 import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../components/widgets/PDSelector.tsx';
@@ -98,9 +97,9 @@ const Questionnaire = (): JSX.Element => {
 <h2>During the Past Week...</h2>
 
       <PDRadioScale
-        name={"CES-D1"}
-        caption={"I was bothered by things that usually don’t bother me."}
-        value={formData.CES-D1}
+        name={"CES_D1"}
+        caption={"I was bothered by things that usually don't bother me."}
+        value={String(formData.CES_D1 || '')}
         options={
           [
             { label: "Rarely or none of the time (less than 1 day)", value: "1"},
@@ -114,7 +113,7 @@ const Questionnaire = (): JSX.Element => {
       <PDRadioScale
         name={"CES_D2"}
         caption={"I did not feel like eating; my appetite was poor."}
-        value={formData.CES_D2}
+        value={String(formData.CES_D2 || '')}
         options={
           [
             { label: "Rarely or none of the time (less than 1 day)", value: "1"},

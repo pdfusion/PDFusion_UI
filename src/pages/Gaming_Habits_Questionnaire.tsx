@@ -10,7 +10,7 @@ import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../
 import { defaultUserData, type UserDataType } from "../contexts/UsersDataContext.tsx";
 import { useUsersDataAPI } from '../hooks/useUsersDataAPI.ts';
 
-const Questionnaire = (): JSX.Element => {
+const Gaming = (): JSX.Element => {
   const {
       initFormData,
       getCaseById,
@@ -95,7 +95,7 @@ const Questionnaire = (): JSX.Element => {
         value={formData.age}
       />
 
-<h2>This section asks about the types of electronic devices you use to play games and your preferences. If you play games, select all the devices you’ve used in the past week (e.g., smartphone, computer, console), then choose the one you prefer most. You’ll also be asked to identify the types of games you typically enjoy. If your favorite type isn’t listed, feel free to write it in under “Other.”
+      <h2>This section asks about the types of electronic devices you use to play games and your preferences. If you play games, select all the devices you've used in the past week (e.g., smartphone, computer, console), then choose the one you prefer most. You'll also be asked to identify the types of games you typically enjoy. If your favorite type isn't listed, feel free to write it in under "Other."</h2>
 
       <PDRadioScale
         name={"feelFit"}
@@ -159,4 +159,4 @@ const Questionnaire = (): JSX.Element => {
   );
 };
 
-export default Questionnaire;
+export default Gaming;
