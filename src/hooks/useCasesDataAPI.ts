@@ -2,6 +2,7 @@ import { useCasesData } from '../contexts/CasesDataContext';
 import { defaultCaseData, type CaseDataType } from '../contexts/CasesDataContext';
 import { casesSeed } from '../data/casesSeed';
 import { LOCAL_STORAGE_CASES_KEY } from '../data/constants';
+import { calcMFIGeneralFatigueScore, calcMFIMentalFatigueScore, calcMFIPhysicalFatigueScore, calcMFIReducedActivityScore, calcMFIReducedModivationScore } from '../models/formModels/MFI';
 import type { IQuestionnaireFormData } from '../pages/IQuestionnaire';
 
 export const useCasesDataAPI = () => {
@@ -46,6 +47,13 @@ export const useCasesDataAPI = () => {
                 formData: {
                     ...formData,
                     caseId
+                },
+                scores: {
+                    generalFatigueScore: calcMFIGeneralFatigueScore(formData),
+                    physicalFatigueScore: calcMFIPhysicalFatigueScore(formData),
+                    reducedActivityScore: calcMFIReducedActivityScore(formData),
+                    reducedMotivationScore: calcMFIReducedModivationScore(formData),
+                    mentalFatigueScore: calcMFIMentalFatigueScore(formData)
                 }
             };
 
@@ -82,7 +90,14 @@ export const useCasesDataAPI = () => {
                     ...caseItem,
                     patientId: updatedFormData.patientId,
                     caseManagerId: updatedFormData.caseManagerId,
-                    formData: updatedFormData
+                    formData: updatedFormData,
+                    scores: {
+                        generalFatigueScore: calcMFIGeneralFatigueScore(formData),
+                        physicalFatigueScore: calcMFIPhysicalFatigueScore(formData),
+                        reducedActivityScore: calcMFIReducedActivityScore(formData),
+                        reducedMotivationScore: calcMFIReducedModivationScore(formData),
+                        mentalFatigueScore: calcMFIMentalFatigueScore(formData)
+                    }
                 }
                 : caseItem
             );
