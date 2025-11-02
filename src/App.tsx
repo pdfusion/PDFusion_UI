@@ -18,6 +18,8 @@ import {
 } from 'react-router-dom';
 import { CasesDataProvider } from './contexts/CasesDataContext';
 import Questionnaire from './pages/Questionnaire';
+import Fatigue from './pages/Fatigue_Severity_Questionnaire.tsx';
+import Gaming from './pages/Gaming_Habits_Questionnaire.tsx';
 import CESD from './pages/CES-D_Questionnaire';
 import Imports from './pages/Imports';
 import CaseDashboard from './pages/CaseDashboard';
