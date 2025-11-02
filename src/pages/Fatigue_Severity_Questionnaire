@@ -98,29 +98,35 @@ const Questionnaire = (): JSX.Element => {
 <h2>During the Past Week...</h2>
 
       <PDRadioScale
-        name={"CES-D1"}
-        caption={"I was bothered by things that usually don’t bother me."}
-        value={formData.CES-D1}
+        name={"FSV1"}
+        caption={"My motivation is lower when I am fatigued."}
+        value={formData.FSV1}
         options={
           [
-            { label: "Rarely or none of the time (less than 1 day)", value: "1"},
-            { label: "Some or little of the time (1-2 days)", value: "2"},
-            { label: "Occasionally or a moderate amount of time (3-4 days)", value: "3"},
-            { label: "Most or all of the time (5-7 days)", value: "4"}
+            { label: "Strongly Disagree", value: "1"},
+            { label: "Disagree", value: "2"},
+            { label: "Some-what Disagree", value: "3"},
+            { label: "Neither Agree or Disagree", value: "4"}
+            { label: "Some-what Agree", value: "5"},
+            { label: "Agree", value: "6"},
+            { label: "Strongly Agree", value: "7"}
           ]
         }
       />
 
       <PDRadioScale
-        name={"CES_D2"}
-        caption={"I did not feel like eating; my appetite was poor."}
-        value={formData.CES_D2}
+        name={"FSV2"}
+        caption={"Exercise brings on my fatigue."}
+        value={formData.FSV2}
         options={
           [
-            { label: "Rarely or none of the time (less than 1 day)", value: "1"},
-            { label: "Some or little of the time (1-2 days)", value: "2"},
-            { label: "Occasionally or a moderate amount of time (3-4 days)", value: "3"},
-            { label: "Most or all of the time (5-7 days)", value: "4"}
+            { label: "Strongly Disagree", value: "1"},
+            { label: "Disagree", value: "2"},
+            { label: "Some-what Disagree", value: "3"},
+            { label: "Neither Agree or Disagree", value: "4"}
+            { label: "Some-what Agree", value: "5"},
+            { label: "Agree", value: "6"},
+            { label: "Strongly Agree", value: "7"}
           ]
         }
       />
