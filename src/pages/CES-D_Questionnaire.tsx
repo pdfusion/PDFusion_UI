@@ -99,7 +99,7 @@ const Questionnaire = (): JSX.Element => {
       <PDRadioScale
         name={"CES_D1"}
         caption={"I was bothered by things that usually don't bother me."}
-        value={String(formData.CES_D1 || '')}
+        value={formData.CES_D1}
         options={
           [
             { label: "Rarely or none of the time (less than 1 day)", value: "1"},
@@ -113,7 +113,7 @@ const Questionnaire = (): JSX.Element => {
       <PDRadioScale
         name={"CES_D2"}
         caption={"I did not feel like eating; my appetite was poor."}
-        value={String(formData.CES_D2 || '')}
+        value={formData.CES_D2}
         options={
           [
             { label: "Rarely or none of the time (less than 1 day)", value: "1"},

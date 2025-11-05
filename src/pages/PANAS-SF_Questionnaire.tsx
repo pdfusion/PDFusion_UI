@@ -94,38 +94,49 @@ const Questionnaire = (): JSX.Element => {
         value={formData.age}
       />
 
-<h2>During the Past Week...</h2>
+      <h2>"Indicate the extent you have felt this way over the past week"</h2>
 
       <PDRadioScale
-        name={"FSV1"}
-        caption={"My motivation is lower when I am fatigued."}
-        value={formData.FSV1}
+        name={"interested"}
+        caption={"Interested"}
+        value={formData.interested}
         options={
           [
-            { label: "Strongly Disagree", value: "1"},
-            { label: "Disagree", value: "2"},
-            { label: "Some-what Disagree", value: "3"},
-            { label: "Neither Agree or Disagree", value: "4"},
-            { label: "Some-what Agree", value: "5"},
-            { label: "Agree", value: "6"},
-            { label: "Strongly Agree", value: "7"}
+            { label: "Very slightly or not at all", value: "1"},
+            { label: "A little", value: "2"},
+            { label: "Moderately", value: "3"},
+            { label: "Quite a bit", value: "4"},
+            { label: "Extremely", value: "5"}
           ]
         }
       />
 
       <PDRadioScale
-        name={"FSV2"}
-        caption={"Exercise brings on my fatigue."}
-        value={formData.FSV2}
+        name={"distressed"}
+        caption={"Distressed"}
+        value={formData.distressed}
         options={
           [
-            { label: "Strongly Disagree", value: "1"},
-            { label: "Disagree", value: "2"},
-            { label: "Some-what Disagree", value: "3"},
-            { label: "Neither Agree or Disagree", value: "4"},
-            { label: "Some-what Agree", value: "5"},
-            { label: "Agree", value: "6"},
-            { label: "Strongly Agree", value: "7"}
+            { label: "Very slightly or not at all", value: "1"},
+            { label: "A little", value: "2"},
+            { label: "Moderately", value: "3"},
+            { label: "Quite a bit", value: "4"},
+            { label: "Extremely", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"excited"}
+        caption={"Excited"}
+        value={formData.excited}
+        options={
+          [
+            { label: "Very slightly or not at all", value: "1"},
+            { label: "A little", value: "2"},
+            { label: "Moderately", value: "3"},
+            { label: "Quite a bit", value: "4"},
+            { label: "Extremely", value: "5"}
           ]
         }
       />

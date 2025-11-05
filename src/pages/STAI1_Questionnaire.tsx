@@ -94,38 +94,32 @@ const Questionnaire = (): JSX.Element => {
         value={formData.age}
       />
 
-<h2>During the Past Week...</h2>
+      <h2>"A number of statements which people have used to describe themselves are given below. Read each statement and then circle the appropriate number to the right of the statement to indicate how you feel right now, that is, at this moment. There are no right or wrong answers. Do not spend too much time on any one statement but give the answer which seems to describe your present feelings best."</h2>
 
       <PDRadioScale
-        name={"FSV1"}
-        caption={"My motivation is lower when I am fatigued."}
-        value={formData.FSV1}
+        name={"ifeelcalm"}
+        caption={"I feel calm"}
+        value={formData.ifeelcalm}
         options={
           [
-            { label: "Strongly Disagree", value: "1"},
-            { label: "Disagree", value: "2"},
-            { label: "Some-what Disagree", value: "3"},
-            { label: "Neither Agree or Disagree", value: "4"},
-            { label: "Some-what Agree", value: "5"},
-            { label: "Agree", value: "6"},
-            { label: "Strongly Agree", value: "7"}
+            { label: "Not at all", value: "1"},
+            { label: "Somewhat", value: "2"},
+            { label: "Moderately so", value: "3"},
+            { label: "Very much so", value: "4"}
           ]
         }
       />
 
       <PDRadioScale
-        name={"FSV2"}
-        caption={"Exercise brings on my fatigue."}
-        value={formData.FSV2}
+        name={"ifeelsecure"}
+        caption={"I feel secure"}
+        value={formData.ifeelsecure}
         options={
           [
-            { label: "Strongly Disagree", value: "1"},
-            { label: "Disagree", value: "2"},
-            { label: "Some-what Disagree", value: "3"},
-            { label: "Neither Agree or Disagree", value: "4"},
-            { label: "Some-what Agree", value: "5"},
-            { label: "Agree", value: "6"},
-            { label: "Strongly Agree", value: "7"}
+            { label: "Not at all", value: "1"},
+            { label: "Somewhat", value: "2"},
+            { label: "Moderately so", value: "3"},
+            { label: "Very much so", value: "4"}
           ]
         }
       />

@@ -20,6 +20,9 @@ import { CasesDataProvider } from './contexts/CasesDataContext';
 import Questionnaire from './pages/Questionnaire';
 import Fatigue from './pages/Fatigue_Severity_Questionnaire.tsx';
 import Gaming from './pages/Gaming_Habits_Questionnaire.tsx';
+import MFI from './pages/MFI_Questionnaire.tsx';
+import STAI1 from './pages/STAI1_Questionnaire.tsx';
+import PANASSF from './pages/PANAS-SF_Questionnaire.tsx';
 import CESD from './pages/CES-D_Questionnaire';
 import Imports from './pages/Imports';
 import CaseDashboard from './pages/CaseDashboard';
@@ -71,6 +74,9 @@ const App: React.FC = () => {
                 <Route path="/ces-d" element={<CESD />} />
                 <Route path="/fatigue" element={<Fatigue />} />
                 <Route path="/gaming" element={<Gaming />} />
+                <Route path="/mfi" element={<MFI />} />
+                <Route path="/stai1" element={<STAI1 />} />
+                <Route path="/panas-sf" element={<PANASSF />} />
                 <Route path="/questionnaire" element={<Questionnaire />} />
                 <Route path="/questionnaire/:id" element={<Questionnaire />}
                 />

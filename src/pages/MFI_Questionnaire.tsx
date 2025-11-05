@@ -94,38 +94,45 @@ const Questionnaire = (): JSX.Element => {
         value={formData.age}
       />
 
-<h2>During the Past Week...</h2>
+      <h2>The next questions are about how you have been feeling lately. Please place one “X” for each
+statement.</h2>
+
+      <h2>The more you agree with the statement, the more you should place an “X” in the direction of
+“yes, that is true .” The more you disagree with the statement, the more you should place an X
+in the direction of “no, that is not true.”</h2>
+
+      <h2>Take for example the statement: “I FEEL RELAXED.”</h2>
+
+      <h2>If you think that this statement is entirely true , that you have been feeling relaxed lately, you
+would place an “X” in the box labeled “1.”</h2>
 
       <PDRadioScale
-        name={"FSV1"}
-        caption={"My motivation is lower when I am fatigued."}
-        value={formData.FSV1}
+        name={"feelFit"}
+        caption={"I feel fit."}
+        value={formData.feelFit}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
         options={
           [
-            { label: "Strongly Disagree", value: "1"},
-            { label: "Disagree", value: "2"},
-            { label: "Some-what Disagree", value: "3"},
-            { label: "Neither Agree or Disagree", value: "4"},
-            { label: "Some-what Agree", value: "5"},
-            { label: "Agree", value: "6"},
-            { label: "Strongly Agree", value: "7"}
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
           ]
         }
       />
 
       <PDRadioScale
-        name={"FSV2"}
-        caption={"Exercise brings on my fatigue."}
-        value={formData.FSV2}
+        name={"physicalAbleLittle"}
+        caption={"Physically I feel only able to do a little."}
+        value={formData.physicalAbleLittle}
         options={
           [
-            { label: "Strongly Disagree", value: "1"},
-            { label: "Disagree", value: "2"},
-            { label: "Some-what Disagree", value: "3"},
-            { label: "Neither Agree or Disagree", value: "4"},
-            { label: "Some-what Agree", value: "5"},
-            { label: "Agree", value: "6"},
-            { label: "Strongly Agree", value: "7"}
+            { label: "Not at all", value: "1"},
+            { label: "Somewhat", value: "2"},
+            { label: "Moderately so", value: "3"},
+            { label: "Very much so", value: "4"}
           ]
         }
       />
