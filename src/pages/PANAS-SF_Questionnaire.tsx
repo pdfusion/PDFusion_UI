@@ -94,7 +94,7 @@ const Questionnaire = (): JSX.Element => {
         value={formData.age}
       />
 
-      <h2>"Indicate the extent you have felt this way over the past week"</h2>
+      <h2>Indicate the extent you have felt this way over the past week</h2>
 
       <PDRadioScale
         name={"interested"}
