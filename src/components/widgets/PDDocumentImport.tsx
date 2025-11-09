@@ -3,6 +3,7 @@ import { LOCAL_STORAGE_CASES_KEY, LOCAL_STORAGE_USERS_KEY } from '../../data/con
 import { isValidImportData, type IPDImportFile } from '../../utils/validateImportData';
 import PDButton from './PDButton';
 import type { CaseDataType } from '../../contexts/CasesDataContext';
+import type { UserDataType } from '../../contexts/UsersDataContext';
 
 interface IPDDocumentImport {
   /**
@@ -18,6 +19,30 @@ interface IPDDocumentImport {
 const PDDocumentImport = ({ caption, uploadType }: IPDDocumentImport): JSX.Element => {
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState<string>('');
+
+  function mergeData(localStorageKey: string, data: IPDImportFile) {
+    const existingData = JSON.parse(localStorage.getItem(localStorageKey) as string) || [];
+    const newData = data[localStorageKey];
+
+    // Create a map for quick lookup of existing data by ID
+    let existingDataMap: any;
+    if(localStorageKey === LOCAL_STORAGE_CASES_KEY)
+      existingDataMap = new Map(existingData.map((caseItem: CaseDataType) => [caseItem.id, caseItem]));
+    
+    else if(localStorageKey === LOCAL_STORAGE_USERS_KEY)
+      existingDataMap = new Map(existingData.map((userItem: UserDataType) => [userItem.id, userItem]));
+    
+    // Add new data items or update if it exists
+    (newData || []).forEach((newData: any) => {
+      existingDataMap.set(newData.id, newData);
+    });
+
+    // Convert map back to array
+    const updatedData = Array.from((existingDataMap || []).values());
+
+    // Save back to local storage
+    localStorage.setItem(localStorageKey, JSON.stringify(updatedData));
+  }
 
   const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
     setError('');
@@ -42,26 +67,12 @@ const PDDocumentImport = ({ caption, uploadType }: IPDDocumentImport): JSX.Eleme
                 localStorage.setItem(LOCAL_STORAGE_USERS_KEY, JSON.stringify(data[LOCAL_STORAGE_USERS_KEY]));
                 setSuccess(`Data restored successfully!`);
               break;
-            case "merge":
-              const existingData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_CASES_KEY) as string) || [];
-              const newCases = data[LOCAL_STORAGE_CASES_KEY];
-
-              // Create a map for quick lookup of existing cases by ID
-              const existingCasesMap = new Map(existingData.map((caseItem: CaseDataType) => [caseItem.id, caseItem]));
-
-              // Add new cases or update if it exists
-              (newCases || []).forEach(newCase => {
-                existingCasesMap.set(newCase.id, newCase);
-              });
-
-              // Convert map back to array
-              const updatedData = Array.from(existingCasesMap.values());
-
-              // Save back to local storage
-              localStorage.setItem(LOCAL_STORAGE_CASES_KEY, JSON.stringify(updatedData));
+          case "merge":
+              if (data[LOCAL_STORAGE_CASES_KEY]) mergeData(LOCAL_STORAGE_CASES_KEY, data);
+              if (data[LOCAL_STORAGE_USERS_KEY]) mergeData(LOCAL_STORAGE_USERS_KEY, data);
               setSuccess(`Data merged successfully!`);
               break;
-            default:
+          default:
               setError(`Invalid data structure in JSON file.`);
               break;
           }

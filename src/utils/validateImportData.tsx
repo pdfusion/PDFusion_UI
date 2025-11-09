@@ -50,7 +50,8 @@ export const isValidImportData = (data: any, importType: string): data is IPDImp
     );
   } else if (importType === "merge")
     return (
-      validateCases(data)
+      validateCases(data) &&
+      validateUsers(data)
     );
   else {
     return false;
