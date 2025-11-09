@@ -3,7 +3,7 @@ import { type UserDataType, defaultUserData } from '../contexts/UsersDataContext
 import { useUsersDataAPI } from '../hooks/useUsersDataAPI';
 
 const Profiles: React.FC = () => {
-  const [profilesData, setProfilesData] = useState<UserDataType[]>([defaultUserData]);
+  const [profilesData, setProfilesData] = useState<UserDataType[] | null>([defaultUserData]);
   const { getUsers } = useUsersDataAPI();
 
   useEffect(() => {
