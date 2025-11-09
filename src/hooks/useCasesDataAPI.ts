@@ -1,6 +1,5 @@
 import { useCasesData } from '../contexts/CasesDataContext';
 import { defaultCaseData, type CaseDataType } from '../contexts/CasesDataContext';
-import { casesSeed } from '../data/casesSeed';
 import { LOCAL_STORAGE_CASES_KEY } from '../data/constants';
 import { calcMFIGeneralFatigueScore, calcMFIMentalFatigueScore, calcMFIPhysicalFatigueScore, calcMFIReducedActivityScore, calcMFIReducedModivationScore } from '../models/formModels/MFI';
 import type { IQuestionnaireFormData } from '../pages/IQuestionnaire';
@@ -9,25 +8,25 @@ export const useCasesDataAPI = () => {
     const { casesData, setCasesData } = useCasesData();
     const initFormData: IQuestionnaireFormData = defaultCaseData.formData;
 
-    const getCases = async (): Promise<CaseDataType[]> => {
+    const getCases = async (): Promise<CaseDataType[] | null> => {
         try {
             const stored = localStorage.getItem(LOCAL_STORAGE_CASES_KEY);
             if (stored) {
                 const parsed = JSON.parse(stored) as CaseDataType[];
                 return Promise.resolve(parsed);
             } else {
-                return Promise.resolve(casesSeed);
+                return Promise.resolve(null);
             }
         } catch (error) {
             console.error('Failed to fetch case data:', error);
-            return Promise.resolve(casesSeed); // fallback to seed data on error
+            return Promise.resolve(null);
         }
     };
 
     const getCaseById = async (caseId: string): Promise<CaseDataType> => {
         try {
             const cases = await getCases();
-            const targetCase = cases.find((caseItem) => caseItem.id === caseId);
+            const targetCase = (cases || []).find((caseItem) => caseItem.id === caseId);
             return targetCase ?? defaultCaseData;
         } catch (error) {
             console.error('Failed to fetch case data:', error);
@@ -37,9 +36,13 @@ export const useCasesDataAPI = () => {
 
     const createCase = async (formData: IQuestionnaireFormData): Promise<CaseDataType> => {
         try {
-            const caseId = `pdfn:cases:${casesData.length + 1}`;
+            const stored = localStorage.getItem(LOCAL_STORAGE_CASES_KEY);
+            const existingCases: CaseDataType[] = stored ? JSON.parse(stored) : [];
+
+            const caseId = existingCases.length ? `pdfn:cases:${existingCases.length + 1}` : 'pfn:cases:1';
             const patientId = formData.patientId;
             const caseManagerId = formData.caseManagerId;
+
             const createdCase: CaseDataType = {
                 id: caseId,
                 patientId,
@@ -58,14 +61,19 @@ export const useCasesDataAPI = () => {
             };
 
             // Avoid duplicate case IDs
-            const exists = casesData.some((c) => c.id === createdCase.id);
+            const exists = existingCases.some((c) => c.id === createdCase.id);
             if (exists) {
-                console.warn(`Case with ID ${createdCase.id} already exists. Skipping creation.`);
-                return createdCase;
+            console.warn(`Case with ID ${createdCase.id} already exists. Skipping creation.`);
+            return createdCase;
             }
 
+            const updatedCases = [...existingCases, createdCase];
+
+            // Save to localStorage
+            localStorage.setItem(LOCAL_STORAGE_CASES_KEY, JSON.stringify(updatedCases));
+
             // Update context state
-            setCasesData((prevCases) => [...prevCases, createdCase]);
+            setCasesData(updatedCases);
 
             return createdCase;
         } catch (error) {
@@ -84,7 +92,7 @@ export const useCasesDataAPI = () => {
                 caseId,
             };
 
-            const updatedCases = casesData.map((caseItem) =>
+            const updatedCases = (casesData || []).map((caseItem) =>
             caseItem.id === caseId
                 ? { 
                     ...caseItem,

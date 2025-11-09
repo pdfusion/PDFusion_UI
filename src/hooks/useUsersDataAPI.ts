@@ -1,30 +1,29 @@
 import type { IUserForm } from "../components/Users/IUserForm";
 import { defaultUserData, useUsersData, type UserDataType } from "../contexts/UsersDataContext";
 import { LOCAL_STORAGE_USERS_KEY } from "../data/constants";
-import { usersSeed } from "../data/usersSeed";
 
 export const useUsersDataAPI = () => {
     const { usersData, setUsersData } = useUsersData();
 
-    const getUsers = async (): Promise<UserDataType[]> => {
+    const getUsers = async (): Promise<UserDataType[] | null> => {
         try {
             const stored = localStorage.getItem(LOCAL_STORAGE_USERS_KEY);
             if (stored) {
                 const parsed = JSON.parse(stored) as UserDataType[];
                 return Promise.resolve(parsed);
             } else {
-                return Promise.resolve(usersSeed);
+                return Promise.resolve(null);
             }
         } catch (error) {
             console.error('Failed to fetch users data:', error);
-            return Promise.resolve(usersSeed); // fallback to seed data on error
+            return Promise.resolve(null);
         }
     };
 
     const getUserById = async (userId: string): Promise<UserDataType> => {
         try {
             const users = await getUsers();
-            const targetUser = users.find((userItem) => userItem.id === userId);
+            const targetUser = (users || []).find((userItem) => userItem.id === userId);
             return targetUser ?? defaultUserData;
         } catch (error) {
             console.error('Failed to fetch user data:', error);
@@ -34,7 +33,11 @@ export const useUsersDataAPI = () => {
 
     const createUser = async (formData: IUserForm): Promise<UserDataType> => {
         try {
-            const userId = `pdfn:users:${usersData.length + 1}`;
+            const stored = localStorage.getItem(LOCAL_STORAGE_USERS_KEY);
+            const existingUsers: UserDataType[] = stored ? JSON.parse(stored) : [];
+
+            const userId = `pdfn:users:${existingUsers.length + 1}`;
+
             const createdUser: UserDataType = {
                 id: userId,
                 name: `${formData.firstName || ''} ${formData.lastName || ''}`,
@@ -46,14 +49,18 @@ export const useUsersDataAPI = () => {
             };
 
             // Avoid duplicate user IDs
-            const exists = usersData.some((c) => c.id === createdUser.id);
+            const exists = existingUsers.some((u) => u.id === createdUser.id);
             if (exists) {
                 console.warn(`User with ID ${createdUser.id} already exists. Skipping creation.`);
                 return createdUser;
             }
 
+            // Update localStorage
+            const updatedUsers = [...existingUsers, createdUser];
+            localStorage.setItem(LOCAL_STORAGE_USERS_KEY, JSON.stringify(updatedUsers));
+
             // Update context state
-            setUsersData((prevUsers) => [...prevUsers, createdUser]);
+            setUsersData(updatedUsers);
 
             return createdUser;
         } catch (error) {
@@ -76,7 +83,7 @@ export const useUsersDataAPI = () => {
                 role: formData.role || ''
             };
 
-            const updatedUsers = usersData.map((userItem) =>
+            const updatedUsers = (usersData || []).map((userItem) =>
             userItem.id === userId
                 ? { ...updatedUser }
                 : userItem

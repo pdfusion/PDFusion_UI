@@ -3,7 +3,7 @@ import { type CaseDataType, defaultCaseData } from '../contexts/CasesDataContext
 import { useCasesDataAPI } from '../hooks/useCasesDataAPI';
 
 const Cases: React.FC = () => {
-  const [casesData, setCasesData] = useState<CaseDataType[]>([defaultCaseData]);
+  const [casesData, setCasesData] = useState<CaseDataType[] | null>([defaultCaseData]);
   const { getCases } = useCasesDataAPI();
 
   useEffect(() => {
