@@ -22,7 +22,7 @@ const Questionnaire = (): JSX.Element => {
     } = useUsersDataAPI();
 
   const [formData, setFormData] = useState(initFormData);
-  const [usersData, setUsersData] = useState<UserDataType[]>([defaultUserData]);
+  const [usersData, setUsersData] = useState<UserDataType[] | null>([defaultUserData]);
   const [patientOptions, setPatientOptions] = useState<IPDSelectorOptions[]>([]);
   const [caseManagerOptions, setCaseManagerOptions] = useState<IPDSelectorOptions[]>([]);
   const { id } = useParams<{ id: string }>();

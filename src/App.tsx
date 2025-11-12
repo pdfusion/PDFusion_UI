@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ThemeProvider,
   createTheme,
@@ -29,6 +29,7 @@ import CaseDashboard from './pages/CaseDashboard';
 import { UsersDataProvider } from './contexts/UsersDataContext';
 import Cases from './pages/Cases';
 import Profiles from './pages/Profiles';
+import { seedLocalStorage } from './data/seedLocalStorage';
 
 const theme = createTheme();
 
@@ -58,6 +59,11 @@ const NavTabs: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  
+  useEffect(() => {
+      seedLocalStorage();
+    }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

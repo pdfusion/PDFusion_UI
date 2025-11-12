@@ -10,6 +10,12 @@ const Report: React.FC = () => {
     >
       <PDDocumentImport
         caption={"Restore data from JSON file"}
+        uploadType={"set"}
+      />
+
+      <PDDocumentImport
+        caption={"Merge data from JSON file"}
+        uploadType={"merge"}
       />
 
       <PDButton

@@ -1,20 +1,19 @@
-import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
-import { usersSeed } from '../data/usersSeed';
+import React, { createContext, useContext, useState, type ReactNode } from 'react';
 import { LOCAL_STORAGE_USERS_KEY } from '../data/constants';
 
 export type UserDataType = {
-    id: string,
-    name: string,
-    firstName: string,
-    lastName: string,
-    email: string,
-    age: string,
-    role: 'patient' | 'caseManager' | 'admin' | ''
+  id: string;
+  name: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  age: string;
+  role: 'patient' | 'caseManager' | 'admin' | '';
 };
 
 export type UsersDataContextType = {
-  usersData: UserDataType[];
-  setUsersData: React.Dispatch<React.SetStateAction<UserDataType[]>>;
+  usersData: UserDataType[] | null;
+  setUsersData: React.Dispatch<React.SetStateAction<UserDataType[] | null>>;
 };
 
 export const defaultUserData: UserDataType = {
@@ -30,23 +29,15 @@ export const defaultUserData: UserDataType = {
 export const UsersDataContext = createContext<UsersDataContextType | undefined>(undefined);
 
 export const UsersDataProvider = ({ children }: { children: ReactNode }) => {
-  const [usersData, setUsersData] = useState<UserDataType[]>(() => {
+  const [usersData, setUsersData] = useState<UserDataType[] | null>(() => {
     try {
       const stored = localStorage.getItem(LOCAL_STORAGE_USERS_KEY);
-      return stored ? JSON.parse(stored) : usersSeed;
+      return stored ? JSON.parse(stored) : null;
     } catch (error) {
       console.error('Failed to load users from localStorage:', error);
-      return [defaultUserData];
+      return null;
     }
   });
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(LOCAL_STORAGE_USERS_KEY, JSON.stringify(usersData));
-    } catch (error) {
-      console.error('Failed to save users to localStorage:', error);
-    }
-  }, [usersData]);
 
   return (
     <UsersDataContext.Provider value={{ usersData, setUsersData }}>
