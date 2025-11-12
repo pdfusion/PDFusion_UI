@@ -41,27 +41,26 @@ export const defaultCaseData: CaseDataType = {
         name: '',
         age: '',
     // MFI
-    feelFit: '',
-    physicalAbleLittle: '',
-    feelTired: '',
+    MFI1: '',
+    MFI2: '',
     // Legacy/Misc
     feelCalm: '',
     // Gaming Habits
-    gameDevices: [],
-    preferredGamingDevice: [],
+    GH1: [],
+    GH2: [],
     // Fatigue Severity
     FSV1: '',
     FSV2: '',
     // CES-D
-    CES_D1: '',
-    CES_D2: '',
+    CESD1: '',
+    CESD2: '',
     // STAI-1
-    ifeelcalm: '',
-    ifeelsecure: '',
+    STAI1: '',
+    STAI2: '',
     // PANAS-SF
-    interested: '',
-    distressed: '',
-    excited: ''
+    PANAS1: '',
+    PANAS2: '',
+    PANAS3: ''
     }
 };
 

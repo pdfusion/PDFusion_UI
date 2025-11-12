@@ -1,4 +1,4 @@
-import { type CaseDataType } from '../contexts/CasesDataContext';
+import { type CaseDataType, defaultCaseData } from '../contexts/CasesDataContext';
 
 export const casesSeed: CaseDataType[] = [
     {
@@ -13,15 +13,20 @@ export const casesSeed: CaseDataType[] = [
             mentalFatigueScore: 500
         },
         formData: {
+            ...defaultCaseData.formData,
+            caseId: 'pdfn:cases:1',
             patientId: 'pdfn:users:1',
             caseManagerId: 'pdfn:users:2',
             name: 'Alice Wonder',
             age: '30',
+            // MFI
             feelFit: '5',
-            feelCalm: "2",
-            gameDevices: ['gameDeviceComputer', 'gameDeviceConsole'],
             physicalAbleLittle: '4',
-            feelTired: '2'
+            feelTired: '2',
+            // Legacy/Misc
+            feelCalm: '2',
+            // Gaming Habits
+            gameDevices: ['gameDeviceComputer', 'gameDeviceConsole']
         }
     },
     {
@@ -36,20 +41,24 @@ export const casesSeed: CaseDataType[] = [
             mentalFatigueScore: 770
         },
         formData: {
+            ...defaultCaseData.formData,
+            caseId: 'pdfn:cases:2',
             patientId: 'pdfn:users:3',
             caseManagerId: 'pdfn:users:4',
-            name: "Jasmine Patel",
-            age: "25",
-            feelFit: "2",
-            feelCalm: "3",
-            gameDevices: [
-                "gameDeviceComputer"
-            ],
+            name: 'Jasmine Patel',
+            age: '25',
+            // MFI
+            feelFit: '2',
             physicalAbleLittle: '3',
             feelTired: '1',
+            // Legacy/Misc
+            feelCalm: '3',
+            // Gaming Habits
+            gameDevices: ['gameDeviceComputer'],
+            // Example of extra legacy field retained by index signature
             testCheckbox: [
-                "option2",
-                "option4"
+                'option2',
+                'option4'
             ]
         }
     },
@@ -65,20 +74,23 @@ export const casesSeed: CaseDataType[] = [
             mentalFatigueScore: 707
         },
         formData: {
+            ...defaultCaseData.formData,
+            caseId: 'pdfn:cases:3',
             patientId: 'pdfn:users:5',
             caseManagerId: 'pdfn:users:6',
-            name: "Darius Kim",
-            age: "60",
-            feelFit: "3",
-            feelCalm: "1",
-            gameDevices: [
-                "gameDeviceDoNotPlay"
-            ],
+            name: 'Darius Kim',
+            age: '60',
+            // MFI
+            feelFit: '3',
             physicalAbleLittle: '5',
             feelTired: '2',
+            // Legacy/Misc
+            feelCalm: '1',
+            // Gaming Habits
+            gameDevices: ['gameDeviceDoNotPlay'],
             testCheckbox: [
-                "option1",
-                "option5"
+                'option1',
+                'option5'
             ]
         }
     }

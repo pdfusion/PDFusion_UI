@@ -21,7 +21,7 @@ const Questionnaire = (): JSX.Element => {
     } = useUsersDataAPI();
 
   const [formData, setFormData] = useState(initFormData);
-  const [usersData, setUsersData] = useState<UserDataType[]>([defaultUserData]);
+  const [usersData, setUsersData] = useState<UserDataType[] | null>([defaultUserData]);
   const [patientOptions, setPatientOptions] = useState<IPDSelectorOptions[]>([]);
   const [caseManagerOptions, setCaseManagerOptions] = useState<IPDSelectorOptions[]>([]);
   const { id } = useParams<{ id: string }>();
@@ -88,12 +88,6 @@ const Questionnaire = (): JSX.Element => {
         value={usersData?.find((user: UserDataType) => user.id === formData.caseManagerId)?.name || ''}
       />
 
-      <PDTextField
-        name={"age"}
-        caption={"Age"}
-        value={formData.age}
-      />
-
       <h2>The next questions are about how you have been feeling lately. Please place one “X” for each
 statement.</h2>
 
@@ -107,9 +101,9 @@ in the direction of “no, that is not true.”</h2>
 would place an “X” in the box labeled “1.”</h2>
 
       <PDRadioScale
-        name={"feelFit"}
+        name={"MFI1"}
         caption={"I feel fit."}
-        value={formData.feelFit}
+        value={formData.MFI1}
         rightEndLabel={"no, that is not true"}
         lefttEndLabel={"yes, that is true"}
         options={
@@ -124,9 +118,9 @@ would place an “X” in the box labeled “1.”</h2>
       />
 
       <PDRadioScale
-        name={"physicalAbleLittle"}
+        name={"MFI2"}
         caption={"Physically I feel only able to do a little."}
-        value={formData.physicalAbleLittle}
+        value={formData.MFI2}
         options={
           [
             { label: "Not at all", value: "1"},

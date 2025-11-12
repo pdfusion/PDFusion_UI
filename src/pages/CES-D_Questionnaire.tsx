@@ -21,7 +21,7 @@ const Questionnaire = (): JSX.Element => {
     } = useUsersDataAPI();
 
   const [formData, setFormData] = useState(initFormData);
-  const [usersData, setUsersData] = useState<UserDataType[]>([defaultUserData]);
+  const [usersData, setUsersData] = useState<UserDataType[] | null>([defaultUserData]);
   const [patientOptions, setPatientOptions] = useState<IPDSelectorOptions[]>([]);
   const [caseManagerOptions, setCaseManagerOptions] = useState<IPDSelectorOptions[]>([]);
   const { id } = useParams<{ id: string }>();
@@ -97,9 +97,9 @@ const Questionnaire = (): JSX.Element => {
 <h2>During the Past Week...</h2>
 
       <PDRadioScale
-        name={"CES_D1"}
+        name={"CESD1"}
         caption={"I was bothered by things that usually don't bother me."}
-        value={formData.CES_D1}
+        value={formData.CESD1}
         options={
           [
             { label: "Rarely or none of the time (less than 1 day)", value: "1"},
@@ -111,9 +111,9 @@ const Questionnaire = (): JSX.Element => {
       />
 
       <PDRadioScale
-        name={"CES_D2"}
+        name={"CESD2"}
         caption={"I did not feel like eating; my appetite was poor."}
-        value={formData.CES_D2}
+        value={formData.CESD2}
         options={
           [
             { label: "Rarely or none of the time (less than 1 day)", value: "1"},

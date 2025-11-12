@@ -21,7 +21,7 @@ const Questionnaire = (): JSX.Element => {
     } = useUsersDataAPI();
 
   const [formData, setFormData] = useState(initFormData);
-  const [usersData, setUsersData] = useState<UserDataType[]>([defaultUserData]);
+  const [usersData, setUsersData] = useState<UserDataType[] | null>([defaultUserData]);
   const [patientOptions, setPatientOptions] = useState<IPDSelectorOptions[]>([]);
   const [caseManagerOptions, setCaseManagerOptions] = useState<IPDSelectorOptions[]>([]);
   const { id } = useParams<{ id: string }>();
@@ -88,18 +88,12 @@ const Questionnaire = (): JSX.Element => {
         value={usersData?.find((user: UserDataType) => user.id === formData.caseManagerId)?.name || ''}
       />
 
-      <PDTextField
-        name={"age"}
-        caption={"Age"}
-        value={formData.age}
-      />
-
       <h2>"A number of statements which people have used to describe themselves are given below. Read each statement and then circle the appropriate number to the right of the statement to indicate how you feel right now, that is, at this moment. There are no right or wrong answers. Do not spend too much time on any one statement but give the answer which seems to describe your present feelings best."</h2>
 
       <PDRadioScale
-        name={"ifeelcalm"}
+        name={"STAI1"}
         caption={"I feel calm"}
-        value={formData.ifeelcalm}
+        value={formData.STAI1}
         options={
           [
             { label: "Not at all", value: "1"},
@@ -111,9 +105,9 @@ const Questionnaire = (): JSX.Element => {
       />
 
       <PDRadioScale
-        name={"ifeelsecure"}
+        name={"STAI2"}
         caption={"I feel secure"}
-        value={formData.ifeelsecure}
+        value={formData.STAI2}
         options={
           [
             { label: "Not at all", value: "1"},

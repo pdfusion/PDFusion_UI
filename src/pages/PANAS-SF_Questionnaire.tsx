@@ -21,7 +21,7 @@ const Questionnaire = (): JSX.Element => {
     } = useUsersDataAPI();
 
   const [formData, setFormData] = useState(initFormData);
-  const [usersData, setUsersData] = useState<UserDataType[]>([defaultUserData]);
+  const [usersData, setUsersData] = useState<UserDataType[] | null>([defaultUserData]);
   const [patientOptions, setPatientOptions] = useState<IPDSelectorOptions[]>([]);
   const [caseManagerOptions, setCaseManagerOptions] = useState<IPDSelectorOptions[]>([]);
   const { id } = useParams<{ id: string }>();
@@ -88,18 +88,12 @@ const Questionnaire = (): JSX.Element => {
         value={usersData?.find((user: UserDataType) => user.id === formData.caseManagerId)?.name || ''}
       />
 
-      <PDTextField
-        name={"age"}
-        caption={"Age"}
-        value={formData.age}
-      />
-
       <h2>Indicate the extent you have felt this way over the past week</h2>
 
       <PDRadioScale
-        name={"interested"}
+        name={"PANAS1"}
         caption={"Interested"}
-        value={formData.interested}
+        value={formData.PANAS1}
         options={
           [
             { label: "Very slightly or not at all", value: "1"},
@@ -112,9 +106,9 @@ const Questionnaire = (): JSX.Element => {
       />
 
       <PDRadioScale
-        name={"distressed"}
+        name={"PANAS2"}
         caption={"Distressed"}
-        value={formData.distressed}
+        value={formData.PANAS2}
         options={
           [
             { label: "Very slightly or not at all", value: "1"},
@@ -127,9 +121,9 @@ const Questionnaire = (): JSX.Element => {
       />
 
       <PDRadioScale
-        name={"excited"}
+        name={"PANAS3"}
         caption={"Excited"}
-        value={formData.excited}
+        value={formData.PANAS3}
         options={
           [
             { label: "Very slightly or not at all", value: "1"},

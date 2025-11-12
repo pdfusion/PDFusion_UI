@@ -38,7 +38,7 @@ const NavTabs: React.FC = () => {
   const location = useLocation();
 
   // Only highlight tabs that are in the nav bar
-  const tabPaths = ['/', '/reports'];
+  const tabPaths = ['/', '/profiles', '/imports'];
   const currentTab = tabPaths.includes(location.pathname) ? location.pathname : false;
 
   const handleChange = (_: React.SyntheticEvent, newValue: string) => {
