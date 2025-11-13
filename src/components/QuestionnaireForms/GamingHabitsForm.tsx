@@ -37,7 +37,7 @@ const GamingHabitsForm = (): JSX.Element => {
       <h2>This section asks about the types of electronic devices you use to play games and your preferences. If you play games, select all the devices you've used in the past week (e.g., smartphone, computer, console), then choose the one you prefer most. You'll also be asked to identify the types of games you typically enjoy. If your favorite type isn't listed, feel free to write it in under "Other."</h2>
 
       <PDCheckboxGroup
-        name={"GH1"}
+        name={"GH1PlayDevices"}
         caption={"Do you play games on any of the following devices? (Select all that apply)"}
         options={[
           { name: "GH1SmartPhoneTablet", label: "Smartphone or tablet"},
@@ -49,7 +49,7 @@ const GamingHabitsForm = (): JSX.Element => {
       />
 
       <PDCheckboxGroup
-        name={"GH2"}
+        name={"GH2PreferredDevice"}
         caption={"Which of the following best describes your preferred gaming device?"}
         options={[
           { name: "GH2SmartPhoneTablet", label: "Smartphone or tablet"},

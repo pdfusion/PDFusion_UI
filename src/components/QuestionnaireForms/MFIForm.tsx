@@ -46,9 +46,9 @@ in the direction of “no, that is not true.”</h2>
 would place an “X” in the box labeled “1.”</h2>
 
       <PDRadioScale
-        name={"MFI1"}
+        name={"MFI1FeelFit"}
         caption={"I feel fit."}
-        value={formData.MFI1}
+        value={formData.MFI1FeelFit}
         rightEndLabel={"no, that is not true"}
         lefttEndLabel={"yes, that is true"}
         options={
@@ -63,9 +63,9 @@ would place an “X” in the box labeled “1.”</h2>
       />
 
       <PDRadioScale
-        name={"MFI2"}
+        name={"MFI2DoLittle"}
         caption={"Physically I feel only able to do a little."}
-        value={formData.MFI2}
+        value={formData.MFI2DoLittle}
         options={
           [
             { label: "Not at all", value: "1"},

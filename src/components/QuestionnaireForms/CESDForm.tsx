@@ -42,9 +42,9 @@ const CESDForm = (): JSX.Element => {
 <h2>During the Past Week...</h2>
 
       <PDRadioScale
-        name={"CESD1"}
+        name={"CESD1Bothered"}
         caption={"I was bothered by things that usually don't bother me."}
-        value={formData.CESD1}
+        value={formData.CESD1Bothered}
         options={
           [
             { label: "Rarely or none of the time (less than 1 day)", value: "1"},
@@ -56,9 +56,9 @@ const CESDForm = (): JSX.Element => {
       />
 
       <PDRadioScale
-        name={"CESD2"}
+        name={"CESD2Eating"}
         caption={"I did not feel like eating; my appetite was poor."}
-        value={formData.CESD2}
+        value={formData.CESD2Eating}
         options={
           [
             { label: "Rarely or none of the time (less than 1 day)", value: "1"},

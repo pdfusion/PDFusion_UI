@@ -36,9 +36,9 @@ const STAI1Form = (): JSX.Element => {
       <h2>"A number of statements which people have used to describe themselves are given below. Read each statement and then circle the appropriate number to the right of the statement to indicate how you feel right now, that is, at this moment. There are no right or wrong answers. Do not spend too much time on any one statement but give the answer which seems to describe your present feelings best."</h2>
 
       <PDRadioScale
-        name={"STAI1"}
+        name={"STAI1FeelCalm"}
         caption={"I feel calm"}
-        value={formData.STAI1}
+        value={formData.STAI1FeelCalm}
         options={
           [
             { label: "Not at all", value: "1"},
@@ -50,9 +50,9 @@ const STAI1Form = (): JSX.Element => {
       />
 
       <PDRadioScale
-        name={"STAI2"}
+        name={"STAI2FeelSecure"}
         caption={"I feel secure"}
-        value={formData.STAI2}
+        value={formData.STAI2FeelSecure}
         options={
           [
             { label: "Not at all", value: "1"},

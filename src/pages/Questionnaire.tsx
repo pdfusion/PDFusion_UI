@@ -156,6 +156,15 @@ const Questionnaire = (): JSX.Element => {
         ]}
       />
 
+<>
+      <MFIForm formData={formData} setFormData={setFormData} />
+      <STAI1Form formData={formData} setFormData={setFormData} />
+      <PANASSFForm formData={formData} setFormData={setFormData} />
+      <FatigueSeverityForm formData={formData} setFormData={setFormData} />
+      <CESDForm formData={formData} setFormData={setFormData} />
+      <GamingHabitsForm formData={formData} setFormData={setFormData} />
+</>
+
       <PDButton
         buttonType={"save"}
       />

@@ -36,9 +36,9 @@ const PANASSFForm = (): JSX.Element => {
       <h2>Indicate the extent you have felt this way over the past week</h2>
 
       <PDRadioScale
-        name={"PANAS1"}
+        name={"PANAS1Interested"}
         caption={"Interested"}
-        value={formData.PANAS1}
+        value={formData.PANAS1Interested}
         options={
           [
             { label: "Very slightly or not at all", value: "1"},
@@ -51,9 +51,9 @@ const PANASSFForm = (): JSX.Element => {
       />
 
       <PDRadioScale
-        name={"PANAS2"}
+        name={"PANAS2Distressed"}
         caption={"Distressed"}
-        value={formData.PANAS2}
+        value={formData.PANAS2Distressed}
         options={
           [
             { label: "Very slightly or not at all", value: "1"},
@@ -66,9 +66,9 @@ const PANASSFForm = (): JSX.Element => {
       />
 
       <PDRadioScale
-        name={"PANAS3"}
+        name={"PANAS3Excited"}
         caption={"Excited"}
-        value={formData.PANAS3}
+        value={formData.PANAS3Excited}
         options={
           [
             { label: "Very slightly or not at all", value: "1"},

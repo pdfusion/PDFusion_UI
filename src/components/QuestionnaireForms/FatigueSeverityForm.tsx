@@ -36,9 +36,9 @@ const FatigueSeverityForm = (): JSX.Element => {
 <h2>During the Past Week...</h2>
 
       <PDRadioScale
-        name={"FSV1"}
+        name={"FSV1Motivation"}
         caption={"My motivation is lower when I am fatigued."}
-        value={formData.FSV1}
+        value={formData.FSV1Motivation}
         options={
           [
             { label: "Strongly Disagree", value: "1"},
@@ -53,9 +53,9 @@ const FatigueSeverityForm = (): JSX.Element => {
       />
 
       <PDRadioScale
-        name={"FSV2"}
+        name={"FSV2Exercise"}
         caption={"Exercise brings on my fatigue."}
-        value={formData.FSV2}
+        value={formData.FSV2Exercise}
         options={
           [
             { label: "Strongly Disagree", value: "1"},
