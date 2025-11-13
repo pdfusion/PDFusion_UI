@@ -18,12 +18,12 @@ import {
 } from 'react-router-dom';
 import { CasesDataProvider } from './contexts/CasesDataContext';
 import Questionnaire from './pages/Questionnaire';
-import Fatigue from './pages/Fatigue_Severity_Questionnaire.tsx';
-import Gaming from './pages/Gaming_Habits_Questionnaire.tsx';
-import MFI from './pages/MFI_Questionnaire.tsx';
-import STAI1 from './pages/STAI1_Questionnaire.tsx';
-import PANASSF from './pages/PANAS-SF_Questionnaire.tsx';
-import CESD from './pages/CES-D_Questionnaire';
+import Fatigue from './pages/FatigueSeverityForm.tsx';
+import Gaming from './pages/GamingHabitsForm.tsx';
+import MFI from './pages/MFIForm.tsx';
+import STAI1 from './pages/STAI1Form.tsx';
+import PANASSF from './pages/PANAS-SFForm.tsx';
+import CESD from './pages/CESDForm.tsx';
 import Imports from './pages/Imports';
 import CaseDashboard from './pages/CaseDashboard';
 import { UsersDataProvider } from './contexts/UsersDataContext';

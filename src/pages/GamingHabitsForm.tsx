@@ -10,64 +10,9 @@ import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../
 import { defaultUserData, type UserDataType } from "../contexts/UsersDataContext.tsx";
 import { useUsersDataAPI } from '../hooks/useUsersDataAPI.ts';
 
-const Gaming = (): JSX.Element => {
-  const {
-      initFormData,
-      getCaseById,
-      createCase,
-      updateCase,
-    } = useCasesDataAPI();
-  const {
-      getUsers,
-    } = useUsersDataAPI();
+const GamingHabitsForm = (): JSX.Element => {
 
-  const [formData, setFormData] = useState(initFormData);
-  const [usersData, setUsersData] = useState<UserDataType[] | null>([defaultUserData]);
-  const [patientOptions, setPatientOptions] = useState<IPDSelectorOptions[]>([]);
-  const [caseManagerOptions, setCaseManagerOptions] = useState<IPDSelectorOptions[]>([]);
-  const { id } = useParams<{ id: string }>();
-  const personColumns: IPDSelectorColumn[] = [
-    { key: "id", label: "ID"},
-    { key: "name", label: "Name"}
-  ]
-  
-  useEffect(() => {
-    (async () => {
-      const usersDataRes = await getUsers();
-      const filteredPatients = (usersDataRes || []).filter((user: UserDataType) => user.role === "patient").map((user: UserDataType) => {
-        return {
-          id: user.id,
-          name: user.name
-        }
-      });
-      const filteredCMs = (usersDataRes || []).filter((user: UserDataType) => user.role === "caseManager").map((user: UserDataType) => {
-        return {
-          id: user.id,
-          name: user.name
-        }
-      });
-
-      setUsersData(usersDataRes);
-      setPatientOptions(filteredPatients);
-      setCaseManagerOptions(filteredCMs);
-      
-      if(id) {
-        const caseDataRes = await getCaseById(id);
-        setFormData(caseDataRes.formData);
-      }
-    })();
-  }, [id]);
-  
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    if(id)
-      await updateCase(id, formData);
-    else
-      await createCase(formData);
-  };
-
-
-  return (
+<>
     <PDForm
       formData={formData}
       setFormData={setFormData}
@@ -116,11 +61,8 @@ const Gaming = (): JSX.Element => {
         ]}
       />
 
-      <PDButton
-        buttonType={"save"}
-      />
     </PDForm>
-  );
+</>
 };
 
-export default Gaming;
+export default GamingHabitsForm;
