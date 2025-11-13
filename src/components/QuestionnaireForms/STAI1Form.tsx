@@ -1,13 +1,13 @@
 import React, { useEffect, useState, type JSX } from 'react';
-import PDForm from '../components/widgets/PDForm.tsx';
-import PDTextField from '../components/widgets/PDTextField.tsx';
-import PDButton from '../components/widgets/PDButton.tsx';
-import PDRadioScale from '../components/widgets/PDRadioScale.tsx';
+import PDForm from '../widgets/PDForm.tsx';
+import PDTextField from '../widgets/PDTextField.tsx';
+import PDButton from '../widgets/PDButton.tsx';
+import PDRadioScale from '../widgets/PDRadioScale.tsx';
 import { useParams } from 'react-router-dom';
-import { useCasesDataAPI } from '../hooks/useCasesDataAPI.ts';
-import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../components/widgets/PDSelector.tsx';
-import { defaultUserData, type UserDataType } from "../contexts/UsersDataContext.tsx";
-import { useUsersDataAPI } from '../hooks/useUsersDataAPI.ts';
+import { useCasesDataAPI } from '../../hooks/useCasesDataAPI.ts';
+import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../widgets/PDSelector.tsx';
+import { defaultUserData, type UserDataType } from "../../contexts/UsersDataContext.tsx";
+import { useUsersDataAPI } from '../../hooks/useUsersDataAPI.ts';
 
 const STAI1Form = (): JSX.Element => {
 

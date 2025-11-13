@@ -9,6 +9,12 @@ import { useCasesDataAPI } from '../hooks/useCasesDataAPI';
 import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../components/widgets/PDSelector.tsx';
 import { defaultUserData, type UserDataType } from "../contexts/UsersDataContext.tsx";
 import { useUsersDataAPI } from '../hooks/useUsersDataAPI.ts';
+import CESDForm from '../components/QuestionnaireForms/CESDForm.tsx';
+import FatigueSeverityForm from '../components/QuestionnaireForms/FatigueSeverityForm.tsx';
+import GamingHabitsForm from '../components/QuestionnaireForms/GamingHabitsForm.tsx';
+import MFIForm from '../components/QuestionnaireForms/MFIForm.tsx';
+import PANASSFForm from '../components/QuestionnaireForms/PANASSFForm.tsx';
+import STAI1Form from '../components/QuestionnaireForms/STAI1Form.tsx';
 
 const Questionnaire = (): JSX.Element => {
   const {
