@@ -40,11 +40,27 @@ export const defaultCaseData: CaseDataType = {
         caseManagerId: '',
         name: '',
         age: '',
-        feelFit: '',
-        feelCalm: '',
-        gameDevices: [],
-        physicalAbleLittle: '',
-        feelTired: ''
+    // MFI
+    MFI1FeelFit: '',
+    MFI2DoLittle: '',
+    // Legacy/Misc
+    feelCalm: '',
+    // Gaming Habits
+    GH1PlayDevices: [],
+    GH2PreferredDevice: [],
+    // Fatigue Severity
+    FSV1Motivation: '',
+    FSV2Exercise: '',
+    // CES-D
+    CESD1Bothered: '',
+    CESD2Eating: '',
+    // STAI-1
+    STAI1FeelCalm: '',
+    STAI2FeelSecure: '',
+    // PANAS-SF
+    PANAS1Interested: '',
+    PANAS2Distressed: '',
+    PANAS3Excited: ''
     }
 };
 
