@@ -37,8 +37,16 @@ const CaseDashboard: React.FC = () => {
         <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
           Patient Information
         </Typography>
-        <Typography>Name: {caseData.formData?.name || 'N/A'}</Typography>
-        <Typography>Age: {caseData.formData?.age || 'N/A'}</Typography>
+        <Typography>Name: {patientData?.name || 'N/A'}</Typography>
+        <Typography>Age: {patientData?.age || 'N/A'}</Typography>
+      </Paper>
+
+      {/* Case Manager Info */}
+      <Paper sx={{ p: 2, mb: 3 }}>
+        <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
+          Case Manager
+        </Typography>
+        <Typography>Name: {caseManagerData?.name || 'N/A'}</Typography>
       </Paper>
 
       {/* Scores */}
