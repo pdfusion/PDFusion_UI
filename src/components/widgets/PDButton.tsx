@@ -10,7 +10,7 @@ export interface IPDButton {
     /**
      * The type of button.
     */
-    buttonType: "save" | "restore" | "backup" | "select" | "clear",
+    buttonType: "save" | "restore" | "backup" | "select" | "clear" | "create",
     /**
      * The form data.
     */
@@ -108,12 +108,31 @@ const PDButton = ({ buttonType, handleChange, handleClick, caption }:IPDButton):
                 </Button>
             );
         }
+        else if(buttonType === "create") {
+            return (
+                <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+                    <button
+                    onClick={handleClick}
+                    style={{
+                        padding: '10px 20px',
+                        backgroundColor: '#007bff',
+                        color: '#fff',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                    }}
+                    >
+                        {caption}
+                    </button>
+                </div>
+            )
+        }
         return <></>;
     }
 
     return (
     <>
-        {caption && <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{caption}</Typography>}
+        {caption && buttonType !== "create" && <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{caption}</Typography>}
         <Box sx={{ display: 'flex', gap: 2 }}>
             {getButton(buttonType)}
         </Box>
