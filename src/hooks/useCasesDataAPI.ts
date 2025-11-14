@@ -110,6 +110,9 @@ export const useCasesDataAPI = () => {
                 : caseItem
             );
 
+            // Save to localStorage
+            localStorage.setItem(LOCAL_STORAGE_CASES_KEY, JSON.stringify(updatedCases));
+
             setCasesData(updatedCases);
 
             return await getCaseById(caseId);
