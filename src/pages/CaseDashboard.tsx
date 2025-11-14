@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Typography, Box, Paper, Grid } from '@mui/material';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Typography, Box, Paper, Grid, Button } from '@mui/material';
 import { useCasesDataAPI } from '../hooks/useCasesDataAPI';
 import { defaultCaseData, type CaseDataType } from '../contexts/CasesDataContext';
 import { defaultUserData, type UserDataType } from '../contexts/UsersDataContext';
@@ -13,6 +13,7 @@ const CaseDashboard: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { getCaseById } = useCasesDataAPI();
   const { getUserById } = useUsersDataAPI();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -26,8 +27,23 @@ const CaseDashboard: React.FC = () => {
     })();
   }, [id]);
 
+  const handleNavigate = () => {
+    navigate(`/questionnaire/${caseData.id}`);
+  };
+
   return (
     <Box sx={{ p: 3 }}>
+      {/* Button at Top-Left */}
+      <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: 2 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleNavigate}
+        >
+          Go to Questionnaire
+        </Button>
+      </Box>
+
       <Typography variant="h4" gutterBottom>
         Case Dashboard
       </Typography>
