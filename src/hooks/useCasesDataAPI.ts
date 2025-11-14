@@ -3,9 +3,11 @@ import { defaultCaseData, type CaseDataType } from '../contexts/CasesDataContext
 import { LOCAL_STORAGE_CASES_KEY } from '../data/constants';
 import { calcMFIGeneralFatigueScore, calcMFIMentalFatigueScore, calcMFIPhysicalFatigueScore, calcMFIReducedActivityScore, calcMFIReducedModivationScore } from '../models/formModels/MFI';
 import type { IQuestionnaireFormData } from '../pages/IQuestionnaire';
+import { useUsersDataAPI } from './useUsersDataAPI';
 
 export const useCasesDataAPI = () => {
     const { casesData, setCasesData } = useCasesData();
+    const { getUserById } = useUsersDataAPI();
     const initFormData: IQuestionnaireFormData = defaultCaseData.formData;
 
     const getCases = async (): Promise<CaseDataType[] | null> => {
@@ -40,6 +42,8 @@ export const useCasesDataAPI = () => {
             const existingCases: CaseDataType[] = stored ? JSON.parse(stored) : [];
 
             const caseId = existingCases.length ? `pdfn:cases:${existingCases.length + 1}` : 'pfn:cases:1';
+            const patientRes = await getUserById(formData?.patientId);
+            const patientName = patientRes?.name || "";
             const patientId = formData.patientId;
             const caseManagerId = formData.caseManagerId;
 
@@ -49,7 +53,8 @@ export const useCasesDataAPI = () => {
                 caseManagerId,
                 formData: {
                     ...formData,
-                    caseId
+                    caseId,
+                    name: patientName
                 },
                 scores: {
                     generalFatigueScore: calcMFIGeneralFatigueScore(formData),
