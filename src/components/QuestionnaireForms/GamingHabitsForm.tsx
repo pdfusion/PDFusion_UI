@@ -1,38 +1,17 @@
-import React, { useEffect, useState, type JSX } from 'react';
-import PDForm from '../widgets/PDForm.tsx';
-import PDTextField from '../widgets/PDTextField.tsx';
-import PDButton from '../widgets/PDButton.tsx';
-// Removed unused PDRadioScale import
+import { type JSX } from 'react';
 import PDCheckboxGroup from '../widgets/PDCheckboxGroup.tsx';
-import { useParams } from 'react-router-dom';
-import { useCasesDataAPI } from '../../hooks/useCasesDataAPI.ts';
-import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../widgets/PDSelector.tsx';
-import { defaultUserData, type UserDataType } from "../../contexts/UsersDataContext.tsx";
-import { useUsersDataAPI } from '../../hooks/useUsersDataAPI.ts';
 
-const GamingHabitsForm = (): JSX.Element => {
+export interface IGamingHabitsForm {
+    /**
+     * The form data.
+    */
+    formData?: any,
+}
 
-<>
-    <PDForm
-      formData={formData}
-      setFormData={setFormData}
-      onSubmit={handleSubmit}
-    >
-      <PDSelector
-        name={"patientId"}
-        caption={"Patient"}
-        options={patientOptions}
-        columns={personColumns}
-        value={usersData?.find((user: UserDataType) => user.id === formData.patientId)?.name || ''}
-      />
+const GamingHabitsForm = ({
+}: IGamingHabitsForm): JSX.Element => {
 
-      <PDSelector
-        name={"caseManagerId"}
-        caption={"Case manager"}
-        options={caseManagerOptions}
-        columns={personColumns}
-        value={usersData?.find((user: UserDataType) => user.id === formData.caseManagerId)?.name || ''}
-      />
+return (<>
 
       <h2>This section asks about the types of electronic devices you use to play games and your preferences. If you play games, select all the devices you've used in the past week (e.g., smartphone, computer, console), then choose the one you prefer most. You'll also be asked to identify the types of games you typically enjoy. If your favorite type isn't listed, feel free to write it in under "Other."</h2>
 
@@ -61,8 +40,7 @@ const GamingHabitsForm = (): JSX.Element => {
         ]}
       />
 
-    </PDForm>
-</>
+</>);
 };
 
 export default GamingHabitsForm;

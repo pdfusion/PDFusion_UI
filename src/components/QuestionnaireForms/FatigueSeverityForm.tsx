@@ -9,29 +9,18 @@ import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../
 import { defaultUserData, type UserDataType } from "../../contexts/UsersDataContext.tsx";
 import { useUsersDataAPI } from '../../hooks/useUsersDataAPI.ts';
 
-const FatigueSeverityForm = (): JSX.Element => {
+export interface IFatigueSeverityForm {
+    /**
+     * The form data.
+    */
+    formData?: any,
+}
 
-<>
-    <PDForm
-      formData={formData}
-      setFormData={setFormData}
-      onSubmit={handleSubmit}
-    >
-      <PDSelector
-        name={"patientId"}
-        caption={"Patient"}
-        options={patientOptions}
-        columns={personColumns}
-        value={usersData?.find((user: UserDataType) => user.id === formData.patientId)?.name || ''}
-      />
+const FatigueSeverityForm = ({
+    formData
+}: IFatigueSeverityForm): JSX.Element => {
 
-      <PDSelector
-        name={"caseManagerId"}
-        caption={"Case manager"}
-        options={caseManagerOptions}
-        columns={personColumns}
-        value={usersData?.find((user: UserDataType) => user.id === formData.caseManagerId)?.name || ''}
-      />
+return (<>
 
 <h2>During the Past Week...</h2>
 
@@ -69,8 +58,7 @@ const FatigueSeverityForm = (): JSX.Element => {
         }
       />
 
-    </PDForm>
-</>
+</>)
 };
 
 export default FatigueSeverityForm;

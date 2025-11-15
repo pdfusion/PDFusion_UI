@@ -1,37 +1,18 @@
-import React, { useEffect, useState, type JSX } from 'react';
-import PDForm from '../widgets/PDForm.tsx';
-import PDTextField from '../widgets/PDTextField.tsx';
-import PDButton from '../widgets/PDButton.tsx';
+import { type JSX } from 'react';
 import PDRadioScale from '../widgets/PDRadioScale.tsx';
-import { useParams } from 'react-router-dom';
-import { useCasesDataAPI } from '../../hooks/useCasesDataAPI.ts';
-import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../widgets/PDSelector.tsx';
-import { defaultUserData, type UserDataType } from "../../contexts/UsersDataContext.tsx";
-import { useUsersDataAPI } from '../../hooks/useUsersDataAPI.ts';
 
-const STAI1Form = (): JSX.Element => {
+export interface ISTAI1Form {
+    /**
+     * The form data.
+    */
+    formData?: any,
+}
 
-<>
-    <PDForm
-      formData={formData}
-      setFormData={setFormData}
-      onSubmit={handleSubmit}
-    >
-      <PDSelector
-        name={"patientId"}
-        caption={"Patient"}
-        options={patientOptions}
-        columns={personColumns}
-        value={usersData?.find((user: UserDataType) => user.id === formData.patientId)?.name || ''}
-      />
+const STAI1Form = ({
+    formData
+}: ISTAI1Form): JSX.Element => {
 
-      <PDSelector
-        name={"caseManagerId"}
-        caption={"Case manager"}
-        options={caseManagerOptions}
-        columns={personColumns}
-        value={usersData?.find((user: UserDataType) => user.id === formData.caseManagerId)?.name || ''}
-      />
+return (<>
 
       <h2>"A number of statements which people have used to describe themselves are given below. Read each statement and then circle the appropriate number to the right of the statement to indicate how you feel right now, that is, at this moment. There are no right or wrong answers. Do not spend too much time on any one statement but give the answer which seems to describe your present feelings best."</h2>
 
@@ -63,8 +44,7 @@ const STAI1Form = (): JSX.Element => {
         }
       />
 
-    </PDForm>
-</>
+</>)
 };
 
 export default STAI1Form;
