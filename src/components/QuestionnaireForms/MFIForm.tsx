@@ -44,15 +44,324 @@ would place an “X” in the box labeled “1.”</h2>
       />
 
       <PDRadioScale
-        name={"MFI2DoLittle"}
+        name={"MFI2PhysicallyDoLittle"}
         caption={"Physically I feel only able to do a little."}
-        value={formData.MFI2DoLittle}
+        value={formData.MFI2PhysicallyDoLittle}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
         options={
           [
-            { label: "Not at all", value: "1"},
-            { label: "Somewhat", value: "2"},
-            { label: "Moderately so", value: "3"},
-            { label: "Very much so", value: "4"}
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI3VeryActive"}
+        caption={"I feel very active."}
+        value={formData.MFI3VeryActive}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI4NiceThings"}
+        caption={"I feel like doing all sorts of nice things."}
+        value={formData.MFI4NiceThings}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI5Tired"}
+        caption={"I feel tired."}
+        value={formData.MFI5Tired}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI6DoLot"}
+        caption={"I think I do a lot in a day."}
+        value={formData.MFI6DoLot}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI7KeepThoughts"}
+        caption={"When I am doing something, I can keep my thoughts on it."}
+        value={formData.MFI7KeepThoughts}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI8TakeOnLot"}
+        caption={"Physically I can take on a lot."}
+        value={formData.MFI8TakeOnLot}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI9DreadDoingThings"}
+        caption={"I dread having to do things."}
+        value={formData.MFI9DreadDoingThings}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI10DoLittle"}
+        caption={"I think I do very little in a day."}
+        value={formData.MFI10DoLittle}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI11ConcentrateWell"}
+        caption={"I can concentrate well."}
+        value={formData.MFI11ConcentrateWell}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI12Rested"}
+        caption={"I am rested."}
+        value={formData.MFI12Rested}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI3EffortToConcentrate"}
+        caption={"It takes a lot of effort to concentrate on things."}
+        value={formData.MFI3EffortToConcentrate}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI14BadCondition"}
+        caption={"Physically I feel I am in a bad condition."}
+        value={formData.MFI14BadCondition}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI15LotsOfPlans"}
+        caption={"I have lots of plans."}
+        value={formData.MFI15LotsOfPlans}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI16TireEasily"}
+        caption={"I tire easily."}
+        value={formData.MFI16TireEasily}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI17GetLittleDone"}
+        caption={"I get little done."}
+        value={formData.MFI17GetLittleDone}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI18DoingAnything"}
+        caption={"I don’t feel like doing anything."}
+        value={formData.MFI18DoingAnything}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI19ThoughtsWander"}
+        caption={"My thoughts easily wander."}
+        value={formData.MFI19ThoughtsWander}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
+          ]
+        }
+      />
+
+      <PDRadioScale
+        name={"MFI20ExcellentCondition"}
+        caption={"Physically I feel I am in an excellent condition."}
+        value={formData.MFI20ExcellentCondition}
+        rightEndLabel={"no, that is not true"}
+        lefttEndLabel={"yes, that is true"}
+        options={
+          [
+            { label: "1", value: "1"},
+            { label: "2", value: "2"},
+            { label: "3", value: "3"},
+            { label: "4", value: "4"},
+            { label: "5", value: "5"}
           ]
         }
       />
