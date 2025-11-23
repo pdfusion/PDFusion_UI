@@ -102,23 +102,6 @@ const Questionnaire = (): JSX.Element => {
       />
 
       <PDRadioScale
-        name={"feelFit"}
-        caption={"I feel fit"}
-        value={formData.feelFit}
-        rightEndLabel={"no, that is not true"}
-        lefttEndLabel={"yes, that is true"}
-        options={
-          [
-            { label: "1", value: "1"},
-            { label: "2", value: "2"},
-            { label: "3", value: "3"},
-            { label: "4", value: "4"},
-            { label: "5", value: "5"}
-          ]
-        }
-      />
-
-      <PDRadioScale
         name={"feelCalm"}
         caption={"I feel calm"}
         value={formData.feelCalm}
