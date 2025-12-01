@@ -6,10 +6,15 @@ export interface IMFIForm {
      * The form data.
     */
     formData?: any,
+    /**
+     * State function to set formData.
+    */
+    setFormData?: React.Dispatch<React.SetStateAction<any>>
 }
 
 const MFIForm = ({
-    formData
+    formData,
+    setFormData
 }: IMFIForm): JSX.Element => {
 
 return (<>
@@ -41,6 +46,8 @@ would place an “X” in the box labeled “1.”</h2>
             { label: "5", value: "5"}
           ]
         }
+        formData={formData}
+        setFormData={setFormData}
       />
 
       <PDRadioScale

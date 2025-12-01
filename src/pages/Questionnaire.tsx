@@ -140,12 +140,12 @@ const Questionnaire = (): JSX.Element => {
       />
 
 <>
-      <MFIForm formData={formData} />
-      <STAI1Form formData={formData} />
+      <MFIForm formData={formData} setFormData={setFormData}/>
+      {/* <STAI1Form formData={formData} />
       <PANASSFForm formData={formData} />
       <FatigueSeverityForm formData={formData} />
       <CESDForm formData={formData} />
-      <GamingHabitsForm formData={formData} />
+      <GamingHabitsForm formData={formData} /> */}
 </>
 
       <PDButton
