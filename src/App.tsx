@@ -18,12 +18,6 @@ import {
 } from 'react-router-dom';
 import { CasesDataProvider } from './contexts/CasesDataContext';
 import Questionnaire from './pages/Questionnaire';
-import Fatigue from './components/QuestionnaireForms/FatigueSeverityForm.tsx';
-import Gaming from './components/QuestionnaireForms/GamingHabitsForm.tsx';
-import MFI from './components/QuestionnaireForms/MFIForm.tsx';
-import STAI1 from './components/QuestionnaireForms/STAI1Form.tsx';
-import PANASSF from './components/QuestionnaireForms/PANASSFForm.tsx';
-import CESD from './components/QuestionnaireForms/CESDForm.tsx';
 import Imports from './pages/Imports';
 import CaseDashboard from './pages/CaseDashboard';
 import { UsersDataProvider } from './contexts/UsersDataContext';
@@ -77,12 +71,6 @@ const App: React.FC = () => {
                 <Route path="/imports" element={<Imports />} />
                 <Route path="/profiles" element={<Profiles />} />
                 <Route path="/cases/:id" element={<CaseDashboard />} />
-                <Route path="/ces-d" element={<CESD />} />
-                <Route path="/fatigue" element={<Fatigue />} />
-                <Route path="/gaming" element={<Gaming />} />
-                <Route path="/mfi" element={<MFI />} />
-                <Route path="/stai1" element={<STAI1 />} />
-                <Route path="/panas-sf" element={<PANASSF />} />
                 <Route path="/questionnaire" element={<Questionnaire />} />
                 <Route path="/questionnaire/:id" element={<Questionnaire />}
                 />

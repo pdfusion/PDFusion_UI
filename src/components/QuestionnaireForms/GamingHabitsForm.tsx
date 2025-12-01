@@ -19,7 +19,7 @@ return (<>
 
       <h2>This section asks about the types of electronic devices you use to play games and your preferences. If you play games, select all the devices you've used in the past week (e.g., smartphone, computer, console), then choose the one you prefer most. You'll also be asked to identify the types of games you typically enjoy. If your favorite type isn't listed, feel free to write it in under "Other."</h2>
 
-      <PDCheckboxGroup
+      {/* <PDCheckboxGroup
         name={"GH1PlayDevices"}
         caption={"Do you play games on any of the following devices? (Select all that apply)"}
         options={[
@@ -28,8 +28,8 @@ return (<>
           { name: "GH1Console", label: "Gaming console (e.g., PlayStation, Xbox, Nintendo Switch)"},
           { name: "GH1DoNotPlay", label: "I do not play games on any electronic device"},
           { name: "GH1DoNotSay", label: "Prefer not to say"}
-        ]}
-      />
+        ]} 
+      />*/}
 
       <PDRadioScale
         name={"GH2PreferredDevice"}
@@ -204,7 +204,7 @@ return (<>
         }
       />
 
-      <PDCheckboxGroup
+      {/* <PDCheckboxGroup
         name={"GH12AccessibilityTools"}
         caption={"Do you use any accessibility tools or settings when gaming? (Select all that apply)"}
         options={[
@@ -217,7 +217,7 @@ return (<>
           { name: "GH12None", label: "None"},
           { name: "GH12DoNotSay", label: "Prefer not to say"}
         ]}
-      />
+      /> */}
 
       <PDRadioScale
         name={"GH13SensoryPreferences"}
@@ -267,7 +267,7 @@ return (<>
       <h2>Gaming Habits Assessment, Section 4: Reasons for Gaming</h2>
       <h3>This section explores the reasons why you choose to play video games. Please select all options that apply to you.</h3>
 
-      <PDCheckboxGroup
+      {/* <PDCheckboxGroup
         name={"GH16ChoosetoPlay"}
         caption={"Why do you choose to play video games? (Select all that apply)"}
         options={[
@@ -315,7 +315,7 @@ return (<>
           { name: "GH18Other", label: "Other"},
           { name: "GH18DoNotSay", label: "Prefer not to say"}
         ]}
-      />
+      /> */}
 
       <PDTextField
         name={"GH19NoGamingExplanation"}
@@ -352,7 +352,7 @@ return (<>
         }
       />
 
-      <PDCheckboxGroup
+      {/* <PDCheckboxGroup
         name={"GH22CorrectiveProcedures"}
         caption={"Have you had any of the following corrective procedures completed? (Select all that apply)"}
         options={[
@@ -365,7 +365,7 @@ return (<>
           { name: "GH22Other", label: "None of the above"},
           { name: "GH22DoNotSay", label: "Prefer not to say"}
         ]}
-      />
+      /> */}
 
       <PDRadioScale
         name={"GH23ColorVision"}
@@ -417,7 +417,7 @@ return (<>
         }
       />
       
-      <PDCheckboxGroup
+      {/* <PDCheckboxGroup
         name={"GH28GenderIdentity"}
         caption={"What is your gender identity? (Select all that apply)"}
         options={[
@@ -447,7 +447,7 @@ return (<>
           { name: "GH29AnotherRaceEthnicBackground", label: "Another race or ethnic background"},
           { name: "GH29DoNotSay", label: "Prefer not to say"}
         ]}
-      />
+      /> */}
 
       <PDRadioScale
         name={"GH30HispanicLatinoOrigin"}
