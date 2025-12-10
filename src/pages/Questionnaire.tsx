@@ -1,9 +1,6 @@
 import React, { useEffect, useState, type JSX } from 'react';
 import PDForm from '../components/widgets/PDForm.tsx';
-import PDTextField from '../components/widgets/PDTextField.tsx';
 import PDButton from '../components/widgets/PDButton.tsx';
-import PDRadioScale from '../components/widgets/PDRadioScale.tsx';
-import PDCheckboxGroup from '../components/widgets/PDCheckboxGroup.tsx';
 import { useParams } from 'react-router-dom';
 import { useCasesDataAPI } from '../hooks/useCasesDataAPI';
 import PDSelector, { type IPDSelectorColumn, type IPDSelectorOptions } from '../components/widgets/PDSelector.tsx';
@@ -93,50 +90,6 @@ const Questionnaire = (): JSX.Element => {
         options={caseManagerOptions}
         columns={personColumns}
         value={usersData?.find((user: UserDataType) => user.id === formData.caseManagerId)?.name || ''}
-      />
-
-      <PDTextField
-        name={"age"}
-        caption={"Age"}
-        value={formData.age}
-      />
-
-      <PDRadioScale
-        name={"feelCalm"}
-        caption={"I feel calm"}
-        value={formData.feelCalm}
-        options={
-          [
-            { label: "Not at all", value: "1"},
-            { label: "Somewhat", value: "2"},
-            { label: "Moderately so", value: "3"},
-            { label: "Very much so", value: "4"}
-          ]
-        }
-      />
-
-      <PDCheckboxGroup
-        name={"gameDevices"}
-        caption={"Do you play games on any of the following devices? (Select all that apply)"}
-        options={[
-          { name: "gameDeviceSmartPhoneTablet", label: "Smartphone or tablet"},
-          { name: "gameDeviceComputer", label: "Computer (desktop or laptop)"},
-          { name: "gameDeviceConsole", label: "Gaming console (e.g., PlayStation, Xbox, Nintendo Switch)"},
-          { name: "gameDeviceDoNotPlay", label: "I do not play games on any electronic device"},
-          { name: "gameDeviceDoNotSay", label: "Prefer not to say"}
-        ]}
-      />
-
-      <PDCheckboxGroup
-        name={"testCheckbox"}
-        caption={"Test checkbox field for fun."}
-        options={[
-          { name: "option1", label: "Option 1"},
-          { name: "option2", label: "Option 2"},
-          { name: "option3", label: "Option 3"},
-          { name: "option4", label: "Option 4"},
-          { name: "option5", label: "Option 5"},
-        ]}
       />
 
 <>
