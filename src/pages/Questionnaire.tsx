@@ -32,46 +32,39 @@ const Questionnaire = (): JSX.Element => {
   const [patientOptions, setPatientOptions] = useState<IPDSelectorOptions[]>([]);
   const [caseManagerOptions, setCaseManagerOptions] = useState<IPDSelectorOptions[]>([]);
   const { id } = useParams<{ id: string }>();
+
   const personColumns: IPDSelectorColumn[] = [
-    { key: "id", label: "ID"},
-    { key: "name", label: "Name"}
-  ]
-  
+    { key: 'id', label: 'ID' },
+    { key: 'name', label: 'Name' }
+  ];
+
   useEffect(() => {
     (async () => {
       const usersDataRes = await getUsers();
-      const filteredPatients = (usersDataRes || []).filter((user: UserDataType) => user.role === "patient").map((user: UserDataType) => {
-        return {
-          id: user.id,
-          name: user.name
-        }
-      });
-      const filteredCMs = (usersDataRes || []).filter((user: UserDataType) => user.role === "caseManager").map((user: UserDataType) => {
-        return {
-          id: user.id,
-          name: user.name
-        }
-      });
+      const filteredPatients = (usersDataRes || [])
+        .filter((user: UserDataType) => user.role === 'patient')
+        .map((user: UserDataType) => ({ id: user.id, name: user.name }));
+
+      const filteredCMs = (usersDataRes || [])
+        .filter((user: UserDataType) => user.role === 'caseManager')
+        .map((user: UserDataType) => ({ id: user.id, name: user.name }));
 
       setUsersData(usersDataRes);
       setPatientOptions(filteredPatients);
       setCaseManagerOptions(filteredCMs);
-      
-      if(id) {
+
+      if (id) {
         const caseDataRes = await getCaseById(id);
         setFormData(caseDataRes.formData);
       }
     })();
   }, [id]);
-  
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if(id)
-      await updateCase(id, formData);
-    else
-      await createCase(formData);
+    if (id) await updateCase(id, formData);
+    else await createCase(formData);
   };
-
 
   return (
     <PDForm
@@ -79,6 +72,7 @@ const Questionnaire = (): JSX.Element => {
       setFormData={setFormData}
       onSubmit={handleSubmit}
     >
+
       <PDSelector
         name={"patientId"}
         caption={"Patient"}
@@ -95,62 +89,38 @@ const Questionnaire = (): JSX.Element => {
         value={usersData?.find((user: UserDataType) => user.id === formData.caseManagerId)?.name || ''}
       />
 
-      <PDTextField
-        name={"age"}
-        caption={"Age"}
-        value={formData.age}
-      />
+      <PDTextField name="age" caption="Age" value={formData.age} />
 
       <PDRadioScale
         name={"feelCalm"}
         caption={"I feel calm"}
         value={formData.feelCalm}
-        options={
-          [
-            { label: "Not at all", value: "1"},
-            { label: "Somewhat", value: "2"},
-            { label: "Moderately so", value: "3"},
-            { label: "Very much so", value: "4"}
-          ]
-        }
+        options={[
+          { label: 'Not at all', value: '1' },
+          { label: 'Somewhat', value: '2' },
+          { label: 'Moderately so', value: '3' },
+          { label: 'Very much so', value: '4' }
+        ]}
       />
 
       <PDCheckboxGroup
         name={"gameDevices"}
-        caption={"Do you play games on any of the following devices? (Select all that apply)"}
+        caption={"Do you play games on any of the following devices? (Select all that apply)"}
         options={[
-          { name: "gameDeviceSmartPhoneTablet", label: "Smartphone or tablet"},
-          { name: "gameDeviceComputer", label: "Computer (desktop or laptop)"},
-          { name: "gameDeviceConsole", label: "Gaming console (e.g., PlayStation, Xbox, Nintendo Switch)"},
-          { name: "gameDeviceDoNotPlay", label: "I do not play games on any electronic device"},
-          { name: "gameDeviceDoNotSay", label: "Prefer not to say"}
+          { name: 'gameDeviceSmartPhoneTablet', label: 'Smartphone or tablet' },
+          { name: 'gameDeviceComputer', label: 'Computer (desktop or laptop)' },
+          { name: 'gameDeviceConsole', label: 'Gaming console (e.g., PlayStation, Xbox, Nintendo Switch)' },
+          { name: 'gameDeviceDoNotPlay', label: 'I do not play games on any electronic device' },
+          { name: 'gameDeviceDoNotSay', label: 'Prefer not to say' }
         ]}
       />
 
-      <PDCheckboxGroup
-        name={"testCheckbox"}
-        caption={"Test checkbox field for fun."}
-        options={[
-          { name: "option1", label: "Option 1"},
-          { name: "option2", label: "Option 2"},
-          { name: "option3", label: "Option 3"},
-          { name: "option4", label: "Option 4"},
-          { name: "option5", label: "Option 5"},
-        ]}
-      />
-
-<>
-      <MFIForm formData={formData} setFormData={setFormData}/>
-      {/* <STAI1Form formData={formData} />
-      <PANASSFForm formData={formData} />
-      <FatigueSeverityForm formData={formData} />
-      <CESDForm formData={formData} />
-      <GamingHabitsForm formData={formData} /> */}
-</>
+      <MFIForm />
 
       <PDButton
         buttonType={"save"}
       />
+
     </PDForm>
   );
 };

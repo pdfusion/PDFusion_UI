@@ -1,14 +1,11 @@
 import React, { type JSX } from 'react';
-import {
-    Box,
-} from '@mui/material';
-import type { IPDTextField } from './PDTextField';
+import { Box } from '@mui/material';
 
 interface IPDForm {
     /**
      * The children of the form
     */
-    children: React.ReactElement<IPDTextField> | React.ReactElement<IPDTextField>[],
+    children: React.ReactNode,
     /**
      * The form data.
     */
@@ -23,19 +20,27 @@ interface IPDForm {
     onSubmit?: (event: React.FormEvent) => void
 }
 
-const PDForm = ({ formData, setFormData, onSubmit,  children }:IPDForm): JSX.Element => {
+/**
+ * Recursively inject props into all valid React elements
+ */
+const injectProps = (element: React.ReactNode, extraProps: any): React.ReactNode => {
+    if (!React.isValidElement(element)) return element;
+
+    const children = element.props.children
+        ? React.Children.map(element.props.children, child => injectProps(child, extraProps))
+        : null;
+
+    return React.cloneElement(element, { ...extraProps }, children);
+};
+
+const PDForm = ({ formData, setFormData, onSubmit, children }: IPDForm): JSX.Element => {
     return (
         <Box
             component="form"
             onSubmit={onSubmit}
             sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: 600 }}
         >
-            {React.Children.map(children, child => {
-                if (React.isValidElement(child)) {
-                    return React.cloneElement(child, { formData, setFormData });
-                }
-                return child;
-            })}
+            {React.Children.map(children, child => injectProps(child, { formData, setFormData }))}
         </Box>
     );
 };
